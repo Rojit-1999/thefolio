@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Samples - The Folio Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body class="bg-gray-50">
+    <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+      <div class="container-max">
+        <div class="flex items-center justify-between py-4 px-4">
+          <a href="./index.html" class="text-2xl font-bold text-gradient">The Folio Studio</a>
+          <div class="hidden lg:flex items-center space-x-8">
+            <a href="./index.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-home">Home</a>
+            <a href="./services.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-services">Services</a>
+            <a href="./portfolio.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-portfolio">Samples</a>
+            <a href="./pricing.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-pricing">Pricing</a>
+            <a href="./pricing.html" class="btn-primary">Get Started</a>
+          </div>
+          <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden bg-white border-t border-gray-200">
+        <div class="container-max py-4 px-4 space-y-4">
+          <a href="./index.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Home</a>
+          <a href="./services.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Services</a>
+          <a href="./portfolio.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Samples</a>
+          <a href="./pricing.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Pricing</a>
+          <a href="./pricing.html" class="btn-primary w-full text-center mt-4">Get Started</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="pt-32 section-padding bg-white">
+        <div class="container-max">
+          <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Professional <span class="text-gradient">Portfolio Examples</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Sample portfolios across different professions, showcasing our
+              design expertise.
+            </p>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button
+              onclick="filterPortfolios(event, 'all')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all active"
+            >
+              All
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'tech')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Tech
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'business')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Business
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'education')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Education
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'legal')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Legal
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'creative')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Creative
+            </button>
+            <button
+              onclick="filterPortfolios(event, 'project-manager')"
+              class="filter-tab px-6 py-3 rounded-full font-medium transition-all"
+            >
+              Project Manager
+            </button>
+          </div>
+
+          <!-- Portfolio Grid -->
+          <div
+            class="grid md:grid-cols-2  gap-6"
+            id="portfolioGrid"
+          >
+            <div class="portfolio-card card-modern" data-category="tech">
+              <div
+                class="aspect-[4/3] gradient-primary rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-primary rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">SE</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Software Engineer</h4>
+                  <p class="text-gray-600 text-sm">Full-Stack Development</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Clean, technical portfolio showcasing coding projects, GitHub
+                integration, and interactive demos. Perfect for developers.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+
+            <div class="portfolio-card card-modern" data-category="business">
+              <div
+                class="aspect-[4/3] gradient-secondary rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-secondary rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">BA</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Business Analyst</h4>
+                  <p class="text-gray-600 text-sm">Data & Strategy</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Professional portfolio highlighting analytical skills, project
+                outcomes, and data visualizations. Showcases business impact.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+
+            <div class="portfolio-card card-modern" data-category="education">
+              <div
+                class="aspect-[4/3] gradient-accent rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-accent rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">T</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Teacher</h4>
+                  <p class="text-gray-600 text-sm">Education & Learning</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Warm, approachable portfolio showcasing teaching philosophy,
+                classroom projects, and student outcomes. Perfect for educators.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+
+            <div class="portfolio-card card-modern" data-category="legal">
+              <div
+                class="aspect-[4/3] gradient-primary rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-primary rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">L</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Lawyer</h4>
+                  <p class="text-gray-600 text-sm">Legal Professional</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Sophisticated, trustworthy portfolio highlighting legal
+                expertise, case studies, and professional achievements. Builds
+                credibility.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+
+            <div class="portfolio-card card-modern" data-category="creative">
+              <div
+                class="aspect-[4/3] gradient-accent rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-accent rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">FM</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Film Maker</h4>
+                  <p class="text-gray-600 text-sm">Video & Creative</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Visually stunning portfolio with video integration, project
+                showcases, and creative storytelling. Perfect for filmmakers.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+
+            <div
+              class="portfolio-card card-modern"
+              data-category="project-manager"
+            >
+              <div
+                class="aspect-[4/3] gradient-secondary rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-12 h-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-10 h-10 gradient-secondary rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-white font-bold text-xs">PM</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-base">Project Manager</h4>
+                  <p class="text-gray-600 text-sm">Leadership & Strategy</p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                Strategic portfolio showcasing project leadership, team
+                management, and successful delivery outcomes. Perfect for PMs.
+              </p>
+              <button class="btn-primary w-full text-sm py-2 mb-2">
+                View Portfolio →
+              </button>
+              <a href="./pricing.html" class="btn-secondary w-full text-sm py-2 text-center">
+                See Pricing
+              </a>
+            </div>
+          </div>
+
+          <div class="text-center mt-16">
+            <h2 class="text-3xl font-bold mb-4">
+              Ready for Your Professional Portfolio?
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Let's create a portfolio that showcases your expertise and opens
+              new opportunities.
+            </p>
+            <div class="flex justify-center">
+              <a href="./pricing.html" class="btn-primary text-lg px-8 py-4">
+                Start Your Portfolio
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container-max px-4">
+        <div class="grid md:grid-cols-3 gap-12 mb-8">
+          <div class="text-left">
+            <div class="text-2xl font-bold text-gradient mb-4">
+              The Folio Studio
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Building professional portfolios that showcase expertise and open
+              doors to new opportunities.
+            </p>
+          </div>
+          <div class="text-left md:text-center">
+            <h4 class="font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="./index.html" class="text-gray-400 hover:text-white transition-colors">Home</a>
+              </li>
+              <li>
+                <a href="./services.html" class="text-gray-400 hover:text-white transition-colors">Services</a>
+              </li>
+              <li>
+                <a href="./portfolio.html" class="text-gray-400 hover:text-white transition-colors">Samples</a>
+              </li>
+              <li>
+                <a href="./pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a>
+              </li>
+            </ul>
+          </div>
+          <div class="text-left md:text-right">
+            <h4 class="font-bold mb-4">Contact</h4>
+            <ul class="space-y-2">
+              <li class="text-gray-400">hello@foliostudio.com</li>
+              <li class="text-gray-400">+1 (555) 123-4567</li>
+              <li class="text-gray-400">New York, NY</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center">
+          <p class="text-gray-400">
+            &copy; 2024 The Folio Studio. Crafted with expertise for
+            professionals.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+

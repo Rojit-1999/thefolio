@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Folio Studio - Research-Backed Portfolio Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body class="bg-gray-50">
+    <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+      <div class="container-max">
+        <div class="flex items-center justify-between py-4 px-4">
+          <a href="./index.html" class="text-2xl font-bold text-gradient">The Folio Studio</a>
+          <div class="hidden lg:flex items-center space-x-8">
+            <a href="./index.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-home">Home</a>
+            <a href="./services.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-services">Services</a>
+            <a href="./portfolio.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-portfolio">Samples</a>
+            <a href="./pricing.html" class="nav-link text-gray-700 hover:text-primary-500 font-medium transition-colors" id="nav-pricing">Pricing</a>
+            <a href="./pricing.html" class="btn-primary">Get Started</a>
+          </div>
+          <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden bg-white border-t border-gray-200">
+        <div class="container-max py-4 px-4 space-y-4">
+          <a href="./index.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Home</a>
+          <a href="./services.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Services</a>
+          <a href="./portfolio.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Samples</a>
+          <a href="./pricing.html" class="block w-full text-left text-gray-700 hover:text-primary-500 font-medium py-2">Pricing</a>
+          <a href="./pricing.html" class="btn-primary w-full text-center mt-4">Get Started</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero-pattern pt-32 pb-16">
+        <div class="container-max" style="padding: 2rem 1rem">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                Build <span class="text-gradient">Professional Portfolio Websites</span> That Get Results
+              </h1>
+              <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Transform your work into a compelling portfolio backed by proven research and designed to showcase your expertise effectively.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="./pricing.html" class="btn-primary text-lg px-8 py-4">Start Building</a>
+                <a href="./portfolio.html" class="btn-secondary text-lg px-8 py-4">View Examples</a>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <div class="card-modern max-w-md w-full floating-animation">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-bold mb-2">Research-Backed Design</h3>
+                  <p class="text-gray-600">Built on proven studies</p>
+                </div>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium">Portfolio Website Click Rate (Recruiter/Client Score)</span>
+                    <span class="text-2xl font-bold text-primary-500">85%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div class="gradient-primary h-3 rounded-full" style="width: 85%"></div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="text-center">
+                      <div class="text-2xl font-bold text-primary-500">7%</div>
+                      <div class="text-sm text-gray-600">Conversion Boost</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-2xl font-bold text-primary-500">2.35%</div>
+                      <div class="text-sm text-gray-600">Above Average</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white section-padding">
+        <div class="container-max">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">The Research-Backed Advantage</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Here's what studies show about how a good portfolio can boost your career.</p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="stat-card">
+              <div class="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                </svg>
+              </div>
+              <div class="text-4xl font-bold text-primary-500 mb-2">85%</div>
+              <p class="text-gray-700 font-medium">of recruiters will click an e-portfolio link if given one</p>
+            </div>
+            <div class="stat-card">
+              <div class="conversion-gauge"></div>
+              <div class="text-4xl font-bold text-primary-500 mb-2">2.35%</div>
+              <p class="text-gray-700 font-medium">Average website conversion rate — exceed that with better design</p>
+            </div>
+            <div class="stat-card">
+              <div class="w-16 h-16 gradient-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="arrow-boost">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-4xl font-bold text-primary-500 mb-2">+7%</div>
+              <p class="text-gray-700 font-medium">Small improvements can boost conversions by up to 7%</p>
+            </div>
+            <div class="stat-card">
+              <div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <div class="text-2xl font-bold text-primary-500 mb-2">Beyond</div>
+              <p class="text-gray-700 font-medium">Portfolio websites help you tell your story beyond resumes</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <p class="text-sm text-gray-500 italic">Sources: Leahy & Filiatrault (2017), 99Firms (2025), Shopify CRO (2024), Jankowski et al. (2019)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-gray-50 section-padding mt-4">
+        <div class="container-max">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Client Success Stories</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Real feedback from professionals who trusted us with their portfolios</p>
+          </div>
+          <div class="relative max-w-4xl mx-auto">
+            <div class="testimonial-slider-container overflow-hidden">
+              <div class="testimonial-slider flex transition-transform duration-500 ease-in-out" id="testimonialSlider">
+                <!-- Slides copied from original home -->
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">MR</span></div><div><h4 class="font-bold text-xl">Michael Rodriguez</h4><p class="text-gray-600">Software Engineer</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"I just got hired at my dream tech company! The portfolio website played a huge impact during the interview. The hiring manager spent 15 minutes going through my projects and was impressed by the clean presentation. Couldn't be happier with The Folio Studio's work."</p></div></div>
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-secondary rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">SJ</span></div><div><h4 class="font-bold text-xl">Sarah Johnson</h4><p class="text-gray-600">Business Analyst</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"The website looks absolutely professional and captures exactly what I wanted to showcase. I feel so much more confident sharing my portfolio now. The design is clean, modern, and really makes my work stand out. Thank you for the amazing job!"</p></div></div>
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">EK</span></div><div><h4 class="font-bold text-xl">Emily Kim</h4><p class="text-gray-600">Teacher</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"I love how the portfolio showcases my teaching philosophy and classroom projects. The layout is intuitive and the design feels warm and approachable - perfect for my field. I'm confident this will help me in my next career move."</p></div></div>
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">DL</span></div><div><h4 class="font-bold text-xl">David Lee</h4><p class="text-gray-600">Lawyer</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"The portfolio strikes the perfect balance between professional and approachable. It effectively communicates my expertise while being easy to navigate. I'm impressed with the attention to detail and the sophisticated design."</p></div></div>
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-secondary rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">AW</span></div><div><h4 class="font-bold text-xl">Alex Wang</h4><p class="text-gray-600">Coder</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"The code showcase section is brilliant! It displays my projects in a way that's both technical and visually appealing. I feel confident sharing this with potential employers and clients. Great work by The Folio Studio team."</p></div></div>
+                <div class="testimonial-slide w-full flex-shrink-0 px-4"><div class="testimonial-modern max-w-3xl mx-auto"><div class="flex items-center mb-6"><div class="w-16 h-16 gradient-accent rounded-full flex items-center justify-center mr-6"><span class="text-white font-bold text-lg">MG</span></div><div><h4 class="font-bold text-xl">Maya Garcia</h4><p class="text-gray-600">Film Maker</p></div></div><p class="text-gray-700 leading-relaxed text-lg text-center">"The visual storytelling in my portfolio is exactly what I needed to showcase my films. The video integration works seamlessly and the overall aesthetic perfectly represents my creative style. I'm thrilled with the result!"</p></div></div>
+              </div>
+            </div>
+            <button onclick="previousTestimonial()" class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors z-10 opacity-80 hover:opacity-100">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button onclick="nextTestimonial()" class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors z-10 opacity-80 hover:opacity-100">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+            <div class="flex justify-center mt-8 space-x-2">
+              <button onclick="goToTestimonial(0)" class="testimonial-dot w-3 h-3 rounded-full bg-primary-500 transition-colors"></button>
+              <button onclick="goToTestimonial(1)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+              <button onclick="goToTestimonial(2)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+              <button onclick="goToTestimonial(3)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+              <button onclick="goToTestimonial(4)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+              <button onclick="goToTestimonial(5)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gradient-primary text-white section-padding mt-8">
+        <div class="container-max text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Build Your Professional Portfolio?</h2>
+          <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">Join professionals who've enhanced their careers with research-backed portfolio design.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="./pricing.html" class="bg-white text-primary-500 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all">Start Your Portfolio</a>
+            <a href="./portfolio.html" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-primary-500 transition-all">See Examples</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container-max px-4">
+        <div class="grid md:grid-cols-3 gap-12 mb-8">
+          <div class="text-left">
+            <div class="text-2xl font-bold text-gradient mb-4">The Folio Studio</div>
+            <p class="text-gray-400 leading-relaxed">Building professional portfolios that showcase expertise and open doors to new opportunities.</p>
+          </div>
+          <div class="text-left md:text-center">
+            <h4 class="font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li><a href="./index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+              <li><a href="./services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+              <li><a href="./portfolio.html" class="text-gray-400 hover:text-white transition-colors">Samples</a></li>
+              <li><a href="./pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="text-left md:text-right">
+            <h4 class="font-bold mb-4">Contact</h4>
+            <ul class="space-y-2">
+              <li class="text-gray-400">hello@foliostudio.com</li>
+              <li class="text-gray-400">+1 (555) 123-4567</li>
+              <li class="text-gray-400">New York, NY</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center">
+          <p class="text-gray-400">&copy; 2024 The Folio Studio. Crafted with expertise for professionals.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  </html>
+
