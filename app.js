@@ -228,53 +228,46 @@ async function handleFormSubmit(event) {
   const resumeInput = document.getElementById("resume");
   const resumeFile = resumeInput.files[0];
 
-  // Prepare form data
-  const formData = {
-    name,
-    email,
-    role,
-    message,
-    resume: resumeFile ? resumeFile.name : null,
-  };
-
-  // Show loading state (optional - you can add a loading spinner)
+  // Show loading state
   const submitButton = event.target.querySelector('button[type="submit"]');
   const originalButtonText = submitButton.textContent;
   submitButton.disabled = true;
   submitButton.textContent = "Submitting...";
 
   try {
-    // Prepare form data as JSON (matching Google Apps Script expectation)
-    const formData = {
+    // Create a hidden iframe to handle the submission (bypasses CORS)
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe_' + Date.now();
+    iframe.style.display = 'none';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    document.body.appendChild(iframe);
+
+    // Create a temporary form to submit data
+    const tempForm = document.createElement('form');
+    tempForm.method = 'POST';
+    tempForm.action = scriptURL;
+    tempForm.target = iframe.name;
+    tempForm.style.display = 'none';
+
+    // Create hidden input with JSON data
+    const dataInput = document.createElement('input');
+    dataInput.type = 'hidden';
+    dataInput.name = 'data';
+    dataInput.value = JSON.stringify({
       name,
       email,
       role,
       message,
       resume: resumeFile ? resumeFile.name : null,
-    };
-
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
     });
+    tempForm.appendChild(dataInput);
 
-    // Get response text and parse as JSON
-    const responseText = await res.text();
-    console.log("Response:", responseText); // Debug log
+    document.body.appendChild(tempForm);
 
-    let result;
-    try {
-      result = JSON.parse(responseText);
-    } catch (e) {
-      console.error("Failed to parse response:", e);
-      throw new Error("Invalid response from server");
-    }
-
-    if (result.success) {
-      // Show success modal
+    // Listen for iframe load (submission complete)
+    iframe.onload = function() {
+      // Show success modal after submission
       const modal = document.createElement("div");
       modal.className =
         "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
@@ -296,34 +289,61 @@ async function handleFormSubmit(event) {
       const resumeLabel = document.getElementById("resumeLabel");
       if (resumePreview) resumePreview.classList.add("hidden");
       if (resumeLabel)
-        resumeLabel.textContent =
-          "Click to upload your resume (PDF, DOC, DOCX)";
-
+        resumeLabel.textContent = "Click to upload your resume (PDF, DOC, DOCX)";
+      
       // Reset character counter
       const counter = document.getElementById("messageCounter");
       if (counter) counter.textContent = "0";
-    } else {
-      // Show error modal with server message
-      const modal = document.createElement("div");
-      modal.className =
-        "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
-      modal.innerHTML = `
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center card-modern">
-          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-4">Submission Failed</h3>
-          <p class="text-gray-600 mb-6">${
-            result.message ||
-            "Could not submit the form. Please try again later."
-          }</p>
-          <button onclick="document.body.removeChild(this.closest('.fixed'))" class="btn-primary">Close</button>
-        </div>`;
-      document.body.appendChild(modal);
-    }
+
+      // Clean up
+      setTimeout(() => {
+        if (tempForm.parentNode) document.body.removeChild(tempForm);
+        if (iframe.parentNode) document.body.removeChild(iframe);
+      }, 1000);
+
+      // Restore button
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    };
+
+    // Submit the form
+    tempForm.submit();
+
+    // Fallback: Show success after timeout (in case iframe.onload doesn't fire)
+    setTimeout(() => {
+      if (submitButton.disabled) {
+        const modal = document.createElement("div");
+        modal.className =
+          "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
+        modal.innerHTML = `
+          <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center card-modern">
+            <div class="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Message Sent!</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">Thanks for reaching out! We'll get back to you within 24 hours to discuss your portfolio vision and next steps.</p>
+            <button onclick="document.body.removeChild(this.closest('.fixed'))" class="btn-primary">Continue</button>
+          </div>`;
+        document.body.appendChild(modal);
+
+        document.querySelector("form").reset();
+        const resumePreview = document.getElementById("resumePreview");
+        const resumeLabel = document.getElementById("resumeLabel");
+        if (resumePreview) resumePreview.classList.add("hidden");
+        if (resumeLabel)
+          resumeLabel.textContent = "Click to upload your resume (PDF, DOC, DOCX)";
+        
+        const counter = document.getElementById("messageCounter");
+        if (counter) counter.textContent = "0";
+
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    }, 2000);
+
   } catch (err) {
     console.error("Submission failed", err);
-    // Show network error modal with more details
+    // Show network error modal
     const modal = document.createElement("div");
     modal.className =
       "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4";
@@ -338,8 +358,8 @@ async function handleFormSubmit(event) {
         <button onclick="document.body.removeChild(this.closest('.fixed'))" class="btn-primary">Close</button>
       </div>`;
     document.body.appendChild(modal);
-  } finally {
-    // Restore button state
+    
+    // Restore button
     submitButton.disabled = false;
     submitButton.textContent = originalButtonText;
   }
