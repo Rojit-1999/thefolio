@@ -10,6 +10,19 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <!-- Fallback: Alternative EmailJS CDN if the above doesn't work -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script> -->
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "x_Nwra95NZwR3WY2N",
+        });
+      })();
+    </script>
     <script defer src="./app.js"></script>
   </head>
   <body class="bg-gray-50">
@@ -229,7 +242,7 @@
                           </div>
                           <button
                             type="button"
-                            onclick="removeResume(),sendMail()"
+                            onclick="removeResume()"
                             class="text-red-500 hover:text-red-700"
                           >
                             <svg

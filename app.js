@@ -197,11 +197,47 @@ function validateField(fieldId, validator) {
 }
 
 // Form submission (contact page)
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = "service_9c7ldam";
+const EMAILJS_TEMPLATE_ID = "template_atts1oq";
+
+// Google Apps Script URL (optional - for saving to Google Sheets)
 const scriptURL =
   "https://script.google.com/macros/s/AKfycbwkxjrGneo6p-HO-TQ0DXgGJfAK1U5fPQEj0qifnqfnwneyeWlptXNfBg_DA8lEhMub/exec";
 
 // Track form submission state to prevent double submissions
 let isSubmitting = false;
+
+// Optional function to save form data to Google Sheets
+async function saveToGoogleSheets(name, email, role, message, resumeFile) {
+  try {
+    // Create FormData for Google Apps Script
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("role", role);
+    formData.append("message", message);
+    formData.append("resumeFileName", resumeFile ? resumeFile.name : "No resume");
+    formData.append("timestamp", new Date().toISOString());
+
+    // Use fetch to submit to Google Apps Script
+    // Note: This requires your Google Apps Script to be deployed as a web app
+    // and allow "Anyone" or "Anyone with Google account" to execute it
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      mode: "no-cors", // Required for Google Apps Script
+      body: formData,
+    });
+
+    // Note: With no-cors mode, we can't read the response
+    // But the data should still be saved to Sheets
+    console.log("Data sent to Google Sheets");
+    return response;
+  } catch (error) {
+    console.error("Error saving to Google Sheets:", error);
+    throw error;
+  }
+}
 
 // Helper function to create and show modal
 function createModal(type, message, errorDetails = null) {
@@ -384,63 +420,20 @@ async function handleFormSubmit(event) {
     const role = document.getElementById("role").value;
     const message = document.getElementById("message").value.trim();
 
-    // Create a hidden iframe to handle the submission (bypasses CORS)
-    const iframe = document.createElement("iframe");
-    iframe.name = "hidden_iframe_" + Date.now();
-    iframe.style.display = "none";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    iframe.setAttribute("aria-hidden", "true");
-    document.body.appendChild(iframe);
+    // Prepare EmailJS parameters
+    const emailParams = {
+      from_name: name,
+      from_email: email,
+      role: role,
+      message: message,
+      resume: resumeFile ? resumeFile.name : "No resume attached",
+      to_name: "The Folio Studio",
+    };
 
-    // Create a temporary form to submit data
-    const tempForm = document.createElement("form");
-    tempForm.method = "POST";
-    tempForm.action = scriptURL;
-    tempForm.target = iframe.name;
-    tempForm.style.display = "none";
-    tempForm.setAttribute("enctype", "multipart/form-data");
-
-    // Create hidden inputs with form data
-    const fields = [
-      { name: "name", value: name },
-      { name: "email", value: email },
-      { name: "role", value: role },
-      { name: "message", value: message },
-    ];
-
-    fields.forEach((field) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = field.name;
-      input.value = field.value;
-      tempForm.appendChild(input);
-    });
-
-    // Handle file upload if present
-    // Note: Due to browser security restrictions, we cannot programmatically
-    // set files on dynamically created file inputs. For full file upload support,
-    // you would need to either:
-    // 1. Use the original form's file input directly (move it to tempForm)
-    // 2. Use fetch API with FormData (requires CORS headers on server)
-    // 3. Use a dedicated file upload service
-    // For now, we send the filename so the server knows a file was intended
-    if (resumeFile) {
-      const fileInput = document.createElement("input");
-      fileInput.type = "hidden";
-      fileInput.name = "resumeFileName";
-      fileInput.value = resumeFile.name;
-      tempForm.appendChild(fileInput);
-      
-      // Also send file size for validation purposes
-      const fileSizeInput = document.createElement("input");
-      fileSizeInput.type = "hidden";
-      fileSizeInput.name = "resumeFileSize";
-      fileSizeInput.value = resumeFile.size.toString();
-      tempForm.appendChild(fileSizeInput);
+    // Check if EmailJS is loaded
+    if (typeof emailjs === "undefined") {
+      throw new Error("EmailJS is not loaded. Please refresh the page and try again.");
     }
-
-    document.body.appendChild(tempForm);
 
     // Helper function to handle successful submission
     const handleSuccess = () => {
@@ -454,16 +447,6 @@ async function handleFormSubmit(event) {
 
       resetForm();
 
-      // Clean up
-      setTimeout(() => {
-        if (tempForm.parentNode) {
-          document.body.removeChild(tempForm);
-        }
-        if (iframe.parentNode) {
-          document.body.removeChild(iframe);
-        }
-      }, 1000);
-
       // Restore button
       submitButton.disabled = false;
       submitButton.textContent = originalButtonText;
@@ -472,17 +455,12 @@ async function handleFormSubmit(event) {
 
     // Helper function to handle submission error
     const handleError = (errorMessage) => {
-      createModal("error", "Please check your internet connection and try again later.", errorMessage);
-
-      // Clean up
-      setTimeout(() => {
-        if (tempForm.parentNode) {
-          document.body.removeChild(tempForm);
-        }
-        if (iframe.parentNode) {
-          document.body.removeChild(iframe);
-        }
-      }, 1000);
+      console.error("EmailJS Error:", errorMessage);
+      createModal(
+        "error",
+        "Failed to send your message. Please try again or contact us directly at hello@foliostudio.com",
+        typeof errorMessage === "string" ? errorMessage : errorMessage.text || "Unknown error"
+      );
 
       // Restore button
       submitButton.disabled = false;
@@ -490,37 +468,33 @@ async function handleFormSubmit(event) {
       isSubmitting = false;
     };
 
-    // Fallback: Show success after timeout (in case iframe.onload doesn't fire)
-    // Use longer timeout to allow for slower connections
-    let fallbackTimeout = setTimeout(() => {
-      if (!successShown && submitButton.disabled) {
-        handleSuccess();
-      }
-    }, 5000);
-
-    // Listen for iframe load (submission complete)
-    iframe.onload = function () {
-      // Clear the fallback timeout since iframe loaded successfully
-      clearTimeout(fallbackTimeout);
-      try {
-        // Check iframe content for errors (if accessible)
-        // Note: Cross-origin restrictions may prevent reading iframe content
-        // For Google Apps Script, successful submissions typically return 200
-        handleSuccess();
-      } catch (err) {
-        // If we can't read the iframe, assume success after load
-        handleSuccess();
-      }
-    };
-
-    // Error handler for iframe
-    iframe.onerror = function () {
-      clearTimeout(fallbackTimeout);
-      handleError("Failed to submit form. Please try again.");
-    };
-
-    // Submit the form
-    tempForm.submit();
+    // Send email using EmailJS
+    emailjs
+      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+      .then(
+        (response) => {
+          console.log("Email sent successfully!", response.status, response.text);
+          
+          // Optionally also save to Google Sheets (non-blocking)
+          // This runs in the background and won't affect the user experience if it fails
+          saveToGoogleSheets(name, email, role, message, resumeFile).catch((err) => {
+            console.warn("Failed to save to Google Sheets (non-critical):", err);
+          });
+          
+          handleSuccess();
+        },
+        (error) => {
+          console.error("EmailJS Error Details:", error);
+          // Provide more specific error messages
+          let errorMsg = "Unknown error occurred";
+          if (error.text) {
+            errorMsg = error.text;
+          } else if (error.message) {
+            errorMsg = error.message;
+          }
+          handleError(errorMsg);
+        }
+      );
   } catch (err) {
     console.error("Submission failed", err);
     createModal(
