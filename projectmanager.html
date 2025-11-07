@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rivera - Project Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Custom Animations */
+        @keyframes morphing {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        
+        @keyframes float-diagonal {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(90deg); }
+            50% { transform: translate(-5px, -20px) rotate(180deg); }
+            75% { transform: translate(-10px, -5px) rotate(270deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3); }
+        }
+        
+        @keyframes text-reveal {
+            0% { opacity: 0; transform: translateY(50px) rotateX(90deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+        
+        @keyframes slide-in-left {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slide-in-right {
+            0% { opacity: 0; transform: translateX(100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes scale-in {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .morphing-blob {
+            animation: morphing 8s ease-in-out infinite;
+        }
+        
+        .floating-element {
+            animation: float-diagonal 12s ease-in-out infinite;
+        }
+        
+        .glow-pulse {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .reveal-text {
+            opacity: 0;
+            animation: text-reveal 1s ease-out forwards;
+        }
+        
+        .slide-left {
+            opacity: 0;
+            animation: slide-in-left 0.8s ease-out forwards;
+        }
+        
+        .slide-right {
+            opacity: 0;
+            animation: slide-in-right 0.8s ease-out forwards;
+        }
+        
+        .scale-up {
+            opacity: 0;
+            animation: scale-in 0.6s ease-out forwards;
+        }
+        
+        /* Interactive Elements */
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-15px) rotateY(5deg) rotateX(5deg);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .skill-orb {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .skill-orb:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+        
+        .timeline-connector {
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4, #10b981, #f59e0b);
+            background-size: 400% 400%;
+            animation: gradient-shift 4s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .project-showcase {
+            perspective: 1000px;
+        }
+        
+        .project-card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .project-card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Custom Grid Patterns */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .dot-pattern {
+            background-image: radial-gradient(circle, rgba(139, 92, 246, 0.2) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        /* Progress Animations */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 2s ease-in-out;
+        }
+        
+        .progress-circle.animate {
+            stroke-dashoffset: calc(283 - (283 * var(--progress)) / 100);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .interactive-card:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Hero Section with Morphing Background -->
+    <section class="min-h-screen relative flex items-center justify-center overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900"></div>
+        <div class="absolute inset-0 grid-pattern opacity-30"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 w-32 h-32 bg-purple-500 morphing-blob opacity-20"></div>
+        <div class="absolute top-40 right-32 w-24 h-24 bg-blue-500 morphing-blob opacity-15" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-cyan-500 morphing-blob opacity-25" style="animation-delay: 4s;"></div>
+        
+        <!-- Geometric Shapes -->
+        <div class="absolute top-1/4 right-20 w-16 h-16 border-2 border-purple-400 floating-element opacity-40"></div>
+        <div class="absolute bottom-1/3 left-16 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 floating-element opacity-30" style="animation-delay: 3s;"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto pt-16 md:pt-0">
+                <!-- Main Title with Staggered Animation -->
+                <div class="mb-8">
+                    <h1 class="text-6xl md:text-8xl font-bold mb-4">
+                        <span class="reveal-text block" style="animation-delay: 0.2s;">ALEX</span>
+                        <span class="reveal-text block gradient-text bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent" style="animation-delay: 0.4s;">RIVERA</span>
+                    </h1>
+                    <div class="reveal-text mono text-xl md:text-2xl text-gray-300 tracking-wider" style="animation-delay: 0.6s;">
+                        &lt; PROJECT_ARCHITECT /&gt;
+                    </div>
+                </div>
+                
+                <!-- Animated Tagline -->
+                <div class="reveal-text text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed" style="animation-delay: 0.8s;">
+                    Transforming chaos into <span class="text-cyan-400 font-semibold">systematic excellence</span>. 
+                    Building bridges between <span class="text-purple-400 font-semibold">vision</span> and 
+                    <span class="text-blue-400 font-semibold">execution</span>.
+                </div>
+                
+                <!-- Interactive Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16 md:mb-0">
+                    <div class="glass rounded-2xl p-6 glow-pulse scale-up" style="animation-delay: 1s;">
+                        <div class="text-4xl font-bold text-cyan-400 mono counter" data-target="150">0</div>
+                        <div class="text-gray-300 text-sm uppercase tracking-wide">Projects Delivered</div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 glow-pulse scale-up" style="animation-delay: 1.2s;">
+                        <div class="text-4xl font-bold text-purple-400 mono counter" data-target="8">0</div>
+                        <div class="text-gray-300 text-sm uppercase tracking-wide">Years Experience</div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 glow-pulse scale-up" style="animation-delay: 1.4s;">
+                        <div class="text-4xl font-bold text-blue-400 mono counter" data-target="98">0</div>
+                        <div class="text-gray-300 text-sm uppercase tracking-wide">Success Rate %</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section with Split Layout -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-gray-800"></div>
+        <div class="absolute inset-0 dot-pattern opacity-20"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                            The Method
+                        </span>
+                    </h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Every project is a puzzle. I don't just solve them—I redesign the game.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Side - Philosophy Cards -->
+                    <div class="space-y-6">
+                        <div class="interactive-card glass-dark rounded-2xl p-6 slide-left" style="animation-delay: 0.2s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold">Systems Thinking</h3>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">
+                                I see projects as interconnected ecosystems. Every decision ripples through 
+                                the entire system, creating opportunities for optimization.
+                            </p>
+                        </div>
+                        
+                        <div class="interactive-card glass-dark rounded-2xl p-6 slide-left" style="animation-delay: 0.4s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold">Adaptive Leadership</h3>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">
+                                Rigid plans break under pressure. I build flexibility into frameworks 
+                                while maintaining laser focus on outcomes that matter.
+                            </p>
+                        </div>
+                        
+                        <div class="interactive-card glass-dark rounded-2xl p-6 slide-left" style="animation-delay: 0.6s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold">Human-Centered Design</h3>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">
+                                Technology serves people, not the other way around. I design processes 
+                                that amplify human potential rather than constrain it.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Skill Visualization -->
+                    <div class="slide-right" style="animation-delay: 0.8s;">
+                        <div class="glass-dark rounded-3xl p-8">
+                            <h3 class="text-2xl font-bold mb-8 text-center">Core Competencies</h3>
+                            
+                            <!-- Circular Progress Indicators -->
+                            <div class="grid grid-cols-2 gap-8">
+                                <div class="text-center">
+                                    <div class="relative w-24 h-24 mx-auto mb-4">
+                                        <svg class="w-24 h-24 progress-ring">
+                                            <circle cx="48" cy="48" r="45" stroke="rgba(139, 92, 246, 0.2)" stroke-width="6" fill="none"/>
+                                            <circle cx="48" cy="48" r="45" stroke="url(#gradient1)" stroke-width="6" fill="none" 
+                                                    class="progress-circle" style="--progress: 95"/>
+                                        </svg>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-lg font-bold mono">95%</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Strategic Planning</p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="relative w-24 h-24 mx-auto mb-4">
+                                        <svg class="w-24 h-24 progress-ring">
+                                            <circle cx="48" cy="48" r="45" stroke="rgba(6, 182, 212, 0.2)" stroke-width="6" fill="none"/>
+                                            <circle cx="48" cy="48" r="45" stroke="url(#gradient2)" stroke-width="6" fill="none" 
+                                                    class="progress-circle" style="--progress: 92"/>
+                                        </svg>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-lg font-bold mono">92%</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Team Leadership</p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="relative w-24 h-24 mx-auto mb-4">
+                                        <svg class="w-24 h-24 progress-ring">
+                                            <circle cx="48" cy="48" r="45" stroke="rgba(59, 130, 246, 0.2)" stroke-width="6" fill="none"/>
+                                            <circle cx="48" cy="48" r="45" stroke="url(#gradient3)" stroke-width="6" fill="none" 
+                                                    class="progress-circle" style="--progress: 89"/>
+                                        </svg>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-lg font-bold mono">89%</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Risk Management</p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="relative w-24 h-24 mx-auto mb-4">
+                                        <svg class="w-24 h-24 progress-ring">
+                                            <circle cx="48" cy="48" r="45" stroke="rgba(16, 185, 129, 0.2)" stroke-width="6" fill="none"/>
+                                            <circle cx="48" cy="48" r="45" stroke="url(#gradient4)" stroke-width="6" fill="none" 
+                                                    class="progress-circle" style="--progress: 97"/>
+                                        </svg>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-lg font-bold mono">97%</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Stakeholder Relations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SVG Gradients -->
+        <svg width="0" height="0">
+            <defs>
+                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8b5cf6"/>
+                    <stop offset="100%" style="stop-color:#a855f7"/>
+                </linearGradient>
+                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#06b6d4"/>
+                    <stop offset="100%" style="stop-color:#0891b2"/>
+                </linearGradient>
+                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3b82f6"/>
+                    <stop offset="100%" style="stop-color:#2563eb"/>
+                </linearGradient>
+                <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#10b981"/>
+                    <stop offset="100%" style="stop-color:#059669"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="py-20 bg-gray-900 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                        Journey
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-400">Evolution through challenges and growth</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-1 timeline-connector"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <!-- Item 1 -->
+                        <div class="relative flex items-start">
+                            <div class="absolute left-6 w-5 h-5 bg-purple-500 rounded-full border-4 border-gray-900 z-10"></div>
+                            <div class="ml-20 interactive-card glass-dark rounded-2xl p-6 w-full">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-white">Senior Project Manager</h3>
+                                        <p class="text-purple-400 font-medium">TechFlow Solutions</p>
+                                    </div>
+                                    <div class="mono text-cyan-400 font-medium">2020 - Present</div>
+                                </div>
+                                <p class="text-gray-400 mb-4 leading-relaxed">
+                                    Architecting enterprise transformations for Fortune 500 clients. Led cross-functional teams 
+                                    of 20+ members, delivering $10M+ projects with 99.2% success rate.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm mono">Enterprise Scale</span>
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm mono">$10M+ Budget</span>
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm mono">20+ Team Size</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative flex items-start">
+                            <div class="absolute left-6 w-5 h-5 bg-cyan-500 rounded-full border-4 border-gray-900 z-10"></div>
+                            <div class="ml-20 interactive-card glass-dark rounded-2xl p-6 w-full">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-white">Project Manager</h3>
+                                        <p class="text-cyan-400 font-medium">InnovateX Corp</p>
+                                    </div>
+                                    <div class="mono text-cyan-400 font-medium">2018 - 2020</div>
+                                </div>
+                                <p class="text-gray-400 mb-4 leading-relaxed">
+                                    Spearheaded digital transformation initiatives. Reduced operational costs by 35% 
+                                    while improving system reliability to 99.9% uptime.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm mono">Digital Transform</span>
+                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm mono">35% Cost Reduction</span>
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm mono">99.9% Uptime</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="relative flex items-start">
+                            <div class="absolute left-6 w-5 h-5 bg-blue-500 rounded-full border-4 border-gray-900 z-10"></div>
+                            <div class="ml-20 interactive-card glass-dark rounded-2xl p-6 w-full">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-white">Associate Project Manager</h3>
+                                        <p class="text-blue-400 font-medium">StartupHub Inc</p>
+                                    </div>
+                                    <div class="mono text-cyan-400 font-medium">2016 - 2018</div>
+                                </div>
+                                <p class="text-gray-400 mb-4 leading-relaxed">
+                                    Built scalable project frameworks from ground up. Established processes that 
+                                    supported 400% company growth while maintaining quality standards.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm mono">Framework Design</span>
+                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm mono">400% Growth</span>
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm mono">Process Innovation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase with 3D Cards -->
+    <section class="py-20 bg-gray-800 relative project-showcase">
+        <div class="absolute inset-0 grid-pattern opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Featured Work
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-400">Transforming complexity into elegant solutions</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Project 1 -->
+                <div class="project-card-3d interactive-card glass-dark rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 mono text-xs bg-white/20 px-2 py-1 rounded">
+                            ENTERPRISE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Global ERP Migration</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Orchestrated seamless transition for 2,000+ users across 15 countries. 
+                            Zero downtime, 20% efficiency gain.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                            </div>
+                            <span class="mono text-xs text-gray-500">12 MONTHS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card-3d interactive-card glass-dark rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-cyan-600 to-blue-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 mono text-xs bg-white/20 px-2 py-1 rounded">
+                            AI/ML
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">AI Platform Launch</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Led cross-functional team to deliver machine learning platform. 
+                            Exceeded adoption targets by 200%.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                            </div>
+                            <span class="mono text-xs text-gray-500">8 MONTHS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card-3d interactive-card glass-dark rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-indigo-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 right-4 mono text-xs bg-white/20 px-2 py-1 rounded">
+                            GLOBAL
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Multi-Region Expansion</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Coordinated simultaneous launches across 8 markets. 
+                            Navigated complex regulatory landscapes.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            </div>
+                            <span class="mono text-xs text-gray-500">18 MONTHS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="py-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 dot-pattern opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                        Voices
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-400">What collaborators say about the experience</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Testimonial Cards -->
+                    <div class="testimonial-container relative h-auto min-h-64 overflow-hidden">
+                        <div class="testimonial-card active glass-dark rounded-3xl p-4 md:p-8 absolute inset-0 opacity-100 transition-all duration-500">
+                            <div class="flex items-center mb-4 md:mb-6">
+                                <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-3 md:mr-4 flex-shrink-0">
+                                    SC
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Sarah Chen</h4>
+                                    <p class="text-gray-400 mono text-xs md:text-sm">VP Engineering • TechFlow</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-base md:text-xl text-gray-300 leading-relaxed italic">
+                                "Alex doesn't just manage projects—they architect success. 
+                                Our team velocity increased 40% while stress levels actually decreased."
+                            </blockquote>
+                        </div>
+                        
+                        <div class="testimonial-card glass-dark rounded-3xl p-4 md:p-8 absolute inset-0 opacity-0 transition-all duration-500">
+                            <div class="flex items-center mb-4 md:mb-6">
+                                <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-3 md:mr-4 flex-shrink-0">
+                                    MJ
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Marcus Johnson</h4>
+                                    <p class="text-gray-400 mono text-xs md:text-sm">CEO • InnovateX Corp</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-base md:text-xl text-gray-300 leading-relaxed italic">
+                                "In 15 years of building companies, I've never seen someone turn complexity 
+                                into clarity like Alex does. They see patterns where others see chaos, 
+                                and build bridges where others see walls."
+                            </blockquote>
+                        </div>
+                        
+                        <div class="testimonial-card glass-dark rounded-3xl p-4 md:p-8 absolute inset-0 opacity-0 transition-all duration-500">
+                            <div class="flex items-center mb-4 md:mb-6">
+                                <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-3 md:mr-4 flex-shrink-0">
+                                    LR
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Lisa Rodriguez</h4>
+                                    <p class="text-gray-400 mono text-xs md:text-sm">Director • Global Operations</p>
+                                </div>
+                            </div>
+                            <blockquote class="text-base md:text-xl text-gray-300 leading-relaxed italic">
+                                "Alex brings rare combination of technical depth and human insight. 
+                                They understand that great projects are built by great teams, 
+                                and they know how to unlock that potential."
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div class="flex justify-center mt-8 space-x-3">
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-purple-500 transition-all" onclick="showTestimonial(0)"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 transition-all" onclick="showTestimonial(1)"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 transition-all" onclick="showTestimonial(2)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 w-32 h-32 bg-purple-500/20 morphing-blob"></div>
+        <div class="absolute bottom-20 right-20 w-24 h-24 bg-cyan-500/20 morphing-blob" style="animation-delay: 3s;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        Let's Build
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Ready to transform your next challenge into a systematic success? 
+                    Let's architect something remarkable together.
+                </p>
+                
+                <div class="glass rounded-3xl p-8 max-w-2xl mx-auto">
+                    <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input 
+                                type="text" 
+                                placeholder="Your Name" 
+                                required
+                                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/15 transition-all"
+                            >
+                            <input 
+                                type="email" 
+                                placeholder="Your Email" 
+                                required
+                                class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/15 transition-all"
+                            >
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="Project Type / Challenge" 
+                            class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/15 transition-all"
+                        >
+                        <textarea 
+                            placeholder="Tell me about your vision..." 
+                            rows="4" 
+                            required
+                            class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:bg-white/15 transition-all resize-none"
+                        ></textarea>
+                        <button 
+                            type="submit"
+                            class="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-4 px-8 rounded-xl font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all transform hover:scale-105 glow-pulse"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="mt-12 flex justify-center space-x-8">
+                    <a href="https://linkedin.com/in/alexrivera" target="_blank" rel="noopener noreferrer" 
+                       class="text-gray-400 hover:text-cyan-400 transition-colors transform hover:scale-110">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:alex@example.com" 
+                       class="text-gray-400 hover:text-purple-400 transition-colors transform hover:scale-110">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 11.39l9.455-7.57h.909c.904 0 1.636.733 1.636 1.637z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Trigger animations based on element classes
+                    if (entry.target.classList.contains('slide-left')) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                    if (entry.target.classList.contains('slide-right')) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                    if (entry.target.classList.contains('scale-up')) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                    
+                    // Animate progress circles
+                    entry.target.querySelectorAll('.progress-circle').forEach(circle => {
+                        circle.classList.add('animate');
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.querySelectorAll('.slide-left, .slide-right, .scale-up, .progress-circle').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced counter animation with easing
+        function animateCounter(element, target) {
+            let current = 0;
+            const duration = 2000;
+            const start = performance.now();
+            
+            function update(timestamp) {
+                const elapsed = timestamp - start;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                current = Math.floor(easeOut * target);
+                
+                element.textContent = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Start counters when hero section is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        document.querySelectorAll('.counter').forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            animateCounter(counter, target);
+                        });
+                    }, 1000);
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        heroObserver.observe(document.querySelector('section'));
+
+        // Enhanced testimonial system
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const dots = document.querySelectorAll('.testimonial-dot');
+
+        function showTestimonial(index) {
+            // Hide current testimonial
+            testimonials[currentTestimonial].style.opacity = '0';
+            testimonials[currentTestimonial].classList.remove('active');
+            dots[currentTestimonial].classList.remove('bg-purple-500');
+            dots[currentTestimonial].classList.add('bg-gray-600');
+            
+            // Show new testimonial
+            currentTestimonial = index;
+            testimonials[currentTestimonial].style.opacity = '1';
+            testimonials[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.remove('bg-gray-600');
+            dots[currentTestimonial].classList.add('bg-purple-500');
+        }
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            const nextIndex = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(nextIndex);
+        }, 6000);
+
+        // Enhanced form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const button = event.target.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            // Animate button
+            button.innerHTML = 'Sending...';
+            button.style.background = 'linear-gradient(to right, #10b981, #059669)';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = 'Message Sent!';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                    event.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Smooth scrolling enhancement
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            
+            // Start reveal animations
+            document.querySelectorAll('.reveal-text').forEach((el, index) => {
+                el.style.animationDelay = `${0.2 + index * 0.2}s`;
+                el.style.animationPlayState = 'running';
+            });
+        });
+
+        // Interactive skill orbs (if you want to add click interactions)
+        document.querySelectorAll('.skill-orb').forEach(orb => {
+            orb.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-element');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e480e8358b6b02',t:'MTc2MDQxNzkyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

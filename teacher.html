@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma Rodriguez - Inspiring Educator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sage-primary: #6B7F5A;
+            --sage-light: #8FA67C;
+            --sage-lighter: #B8C9A8;
+            --sky-primary: #4A90A4;
+            --sky-light: #6BA3B5;
+            --sky-lighter: #A8CDD8;
+            --ivory: #FEFCF7;
+            --warm-white: #FDFBF6;
+            --text-primary: #2D3748;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+        }
+        
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        .font-cursive { font-family: 'Dancing Script', cursive; }
+        
+        .bg-sage { background-color: var(--sage-primary); }
+        .bg-sage-light { background-color: var(--sage-light); }
+        .bg-sage-lighter { background-color: var(--sage-lighter); }
+        .bg-sky { background-color: var(--sky-primary); }
+        .bg-sky-light { background-color: var(--sky-light); }
+        .bg-sky-lighter { background-color: var(--sky-lighter); }
+        .bg-ivory { background-color: var(--ivory); }
+        .bg-warm-white { background-color: var(--warm-white); }
+        
+        .text-sage { color: var(--sage-primary); }
+        .text-sky { color: var(--sky-primary); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        
+        .border-sage { border-color: var(--sage-primary); }
+        .border-sky { border-color: var(--sky-primary); }
+        
+        .hover\:bg-sage-dark:hover { background-color: #5A6E4A; }
+        .hover\:bg-sky-dark:hover { background-color: #3A7A8A; }
+        
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.08;
+        }
+        
+        .floating-icon:nth-child(2) { animation-delay: -1.3s; }
+        .floating-icon:nth-child(3) { animation-delay: -2.6s; }
+        .floating-icon:nth-child(4) { animation-delay: -0.7s; }
+        .floating-icon:nth-child(5) { animation-delay: -3.2s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-bar {
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transition: left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .skill-bar.animate::before {
+            left: 100%;
+        }
+        
+        .section-padding { padding: 6rem 0; }
+        
+        @media (max-width: 768px) {
+            .section-padding { padding: 4rem 0; }
+        }
+        
+        .content-center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        .text-center .content-center {
+            align-items: center;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--ivory) 0%, rgba(184, 201, 168, 0.1) 50%, rgba(168, 205, 216, 0.1) 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--sage-primary), var(--sky-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(253, 251, 246, 0.95);
+        }
+        
+        .testimonial-bg {
+            background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+        }
+        
+        .contact-gradient {
+            background: linear-gradient(135deg, rgba(107, 127, 90, 0.05) 0%, rgba(74, 144, 164, 0.05) 100%);
+        }
+    </style>
+</head>
+<body class="font-body bg-warm-white text-primary antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-blur z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-cursive text-3xl font-semibold text-sage">Emma Rodriguez</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-secondary hover:text-sage transition-colors duration-300 font-medium">About</a>
+                    <a href="#philosophy" class="text-secondary hover:text-sage transition-colors duration-300 font-medium">Philosophy</a>
+                    <a href="#experience" class="text-secondary hover:text-sage transition-colors duration-300 font-medium">Experience</a>
+                    <a href="#contact" class="text-secondary hover:text-sage transition-colors duration-300 font-medium">Contact</a>
+                </div>
+                <button class="md:hidden p-2 text-secondary hover:text-sage" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-warm-white border-t border-gray-100" id="mobile-menu">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#about" class="block text-secondary hover:text-sage transition-colors font-medium">About</a>
+                <a href="#philosophy" class="block text-secondary hover:text-sage transition-colors font-medium">Philosophy</a>
+                <a href="#experience" class="block text-secondary hover:text-sage transition-colors font-medium">Experience</a>
+                <a href="#contact" class="block text-secondary hover:text-sage transition-colors font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-[85vh] flex items-center relative overflow-hidden pt-16">
+        <!-- Floating Icons -->
+        <div class="absolute inset-0 pointer-events-none z-0">
+            <div class="floating-icon absolute top-24 left-8 text-3xl opacity-8">📚</div>
+            <div class="floating-icon absolute top-40 right-16 text-2xl opacity-8">✨</div>
+            <div class="floating-icon absolute bottom-40 left-16 text-3xl opacity-8">🌱</div>
+            <div class="floating-icon absolute top-60 left-1/4 text-2xl opacity-8">💡</div>
+            <div class="floating-icon absolute bottom-60 right-1/4 text-2xl opacity-8">🎨</div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[65vh]">
+                <div class="text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center">
+                    <div class="mb-6">
+                        <p class="text-sage font-medium text-xl mb-3 opacity-80">Hello, I'm</p>
+                        <h1 class="font-cursive text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-3 leading-tight relative">
+                            Emma Rodriguez
+                            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-sage to-sky transform scale-x-0 origin-left transition-transform duration-700 hover:scale-x-100 mx-auto lg:mx-0"></div>
+                        </h1>
+                        <div class="w-24 h-1 bg-gradient-to-r from-sage to-sky mx-auto lg:mx-0 mb-6"></div>
+                    </div>
+                    <p class="text-xl sm:text-2xl text-primary mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
+                        Inspiring young minds through creativity, curiosity, and compassionate learning.
+                    </p>
+                    <p class="text-lg text-muted mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        An experienced educator passionate about building confidence, values, and lifelong skills in every learner through innovative teaching methods.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-sage text-white px-8 py-4 rounded-lg font-semibold hover:bg-sage-dark transition-all duration-300 shadow-lg hover:shadow-xl">
+                            View My Journey
+                        </button>
+                        <button class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                            Download Resume
+                        </button>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-sage-lighter/30 to-sky-lighter/30 flex items-center justify-center backdrop-blur-sm">
+                            <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-sage to-sky flex items-center justify-center shadow-2xl overflow-hidden">
+                                <a href="https://imgbb.com/">
+                                    <img src="https://i.ibb.co/B5FKSZSJ/Chat-GPT-Image-Oct-13-2025-07-16-13-PM-removebg-preview.png" 
+                                         alt="Emma Rodriguez - Professional Educator" 
+                                         class="w-full h-full object-cover rounded-full"
+                                         onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-sky-lighter rounded-full flex items-center justify-center text-2xl animate-pulse">
+                            ⭐
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-sage-lighter rounded-full flex items-center justify-center text-xl animate-pulse">
+                            📖
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-gradient-to-br from-ivory/30 to-warm-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl lg:text-6xl font-semibold text-primary mb-6">About Me</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-8"></div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="max-w-4xl mx-auto">
+                <!-- Core Values Icons - 2x2 Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl text-center card-hover shadow-lg border border-sage-lighter/20">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">📚</span>
+                        </div>
+                        <div class="font-semibold text-primary text-base mb-2">Classroom Excellence</div>
+                        <div class="text-sm text-muted">Engaging Learning</div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl text-center card-hover shadow-lg border border-sky-lighter/20">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">🌱</span>
+                        </div>
+                        <div class="font-semibold text-primary text-base mb-2">Student Growth</div>
+                        <div class="text-sm text-muted">Personal Development</div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl text-center card-hover shadow-lg border border-sage-lighter/20">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">🎨</span>
+                        </div>
+                        <div class="font-semibold text-primary text-base mb-2">Creative Methods</div>
+                        <div class="text-sm text-muted">Innovative Teaching</div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl text-center card-hover shadow-lg border border-sky-lighter/20">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">💝</span>
+                        </div>
+                        <div class="font-semibold text-primary text-xs sm:text-sm mb-2 leading-tight">Compassionate Care</div>
+                        <div class="text-sm text-muted">Nurturing Environment</div>
+                    </div>
+                </div>
+                
+                <!-- Main Paragraph -->
+                <div class="text-center mb-16">
+                    <p class="text-xl text-secondary leading-relaxed max-w-3xl mx-auto px-8">
+                        Teaching, to me, is more than a profession — it's a commitment to nurture curiosity, discipline, and compassion. Over the years, I've guided diverse students through meaningful learning experiences that transcend traditional boundaries.
+                    </p>
+                </div>
+                
+                <!-- Achievements Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 bg-gradient-to-br from-sage-lighter/40 to-sage-lighter/60 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-2xl">📘</span>
+                            </div>
+                            <div class="pt-2">
+                                <div class="font-semibold text-primary text-lg">10+ Years of Teaching Experience</div>
+                                <div class="text-muted">Dedicated to educational excellence</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 bg-gradient-to-br from-sky-lighter/40 to-sky-lighter/60 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-2xl">🌍</span>
+                            </div>
+                            <div class="pt-2">
+                                <div class="font-semibold text-primary text-lg">International Experience</div>
+                                <div class="text-muted">Students from 5+ countries</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 bg-gradient-to-br from-sage-lighter/40 to-sage-lighter/60 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-2xl">🏆</span>
+                            </div>
+                            <div class="pt-2">
+                                <div class="font-semibold text-primary text-lg">Excellence in Education Award</div>
+                                <div class="text-muted">National recognition</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 bg-gradient-to-br from-sky-lighter/40 to-sky-lighter/60 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-2xl">🎓</span>
+                            </div>
+                            <div class="pt-2">
+                                <div class="font-semibold text-primary text-lg">Advanced Certifications</div>
+                                <div class="text-muted">Continuous professional development</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Educational Journey -->
+                <div class="bg-white/60 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="font-display text-2xl font-semibold text-primary mb-6 text-center">Educational Journey</h3>
+                    <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
+                        <span class="bg-gradient-to-r from-sage-lighter/40 to-sage-lighter/60 text-sage px-6 py-3 rounded-full font-medium shadow-sm">B.Ed</span>
+                        <span class="text-muted text-xl">→</span>
+                        <span class="bg-gradient-to-r from-sky-lighter/40 to-sky-lighter/60 text-sky px-6 py-3 rounded-full font-medium shadow-sm">M.Ed</span>
+                        <span class="text-muted text-xl">→</span>
+                        <span class="bg-gradient-to-r from-sage-lighter/40 to-sage-lighter/60 text-sage px-6 py-3 rounded-full font-medium shadow-sm">Specialized Training</span>
+                        <span class="text-muted text-xl">→</span>
+                        <span class="bg-gradient-to-r from-sky-lighter/40 to-sky-lighter/60 text-sky px-6 py-3 rounded-full font-medium shadow-sm">Present Role</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Philosophy Section -->
+    <section id="philosophy" class="section-padding contact-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">Teaching Philosophy</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-8"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed">Three fundamental pillars that guide my educational approach and inspire student success</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-20 h-20 bg-sage-lighter/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl">🎨</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-primary mb-4">Empower through Creativity</h3>
+                    <p class="text-secondary leading-relaxed">Fostering imagination and innovative thinking through hands-on projects, artistic expression, and creative problem-solving approaches.</p>
+                </div>
+                <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-20 h-20 bg-sky-lighter/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl">💝</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-primary mb-4">Teach with Compassion</h3>
+                    <p class="text-secondary leading-relaxed">Creating a safe, inclusive environment where every student feels valued, supported, and empowered to reach their full potential.</p>
+                </div>
+                <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <div class="w-20 h-20 bg-sage-lighter/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl">📝</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-primary mb-4">Grow through Reflection</h3>
+                    <p class="text-secondary leading-relaxed">Encouraging self-assessment, critical thinking, and continuous learning for both students and educators in our shared journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">Professional Experience</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-6"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto">A journey of growth, impact, and meaningful educational transformation</p>
+            </div>
+            <div class="space-y-8">
+                <div class="card-hover bg-gradient-to-r from-sage-lighter/10 to-transparent p-8 rounded-2xl border-l-4 border-sage">
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                        <div class="mb-4 lg:mb-0">
+                            <h3 class="font-display text-2xl font-semibold text-primary mb-2">ABC Academy</h3>
+                            <p class="text-sage font-semibold text-lg">Senior English Teacher</p>
+                            <p class="text-muted">2018 – Present</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-sage-lighter/30 text-sage px-4 py-2 rounded-full text-sm font-medium">Literature</span>
+                            <span class="bg-sky-lighter/30 text-sky px-4 py-2 rounded-full text-sm font-medium">Mentorship</span>
+                            <span class="bg-sage-lighter/30 text-sage px-4 py-2 rounded-full text-sm font-medium">Public Speaking</span>
+                            <span class="bg-sky-lighter/30 text-sky px-4 py-2 rounded-full text-sm font-medium">Curriculum Design</span>
+                        </div>
+                    </div>
+                    <p class="text-secondary mb-6 leading-relaxed text-lg">
+                        Developed innovative student-led workshops and digital storytelling programs that increased classroom engagement by 40% and improved creative writing scores across all grade levels.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <span class="mr-2">🏆</span>
+                            Top 5% Student Feedback
+                        </div>
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <span class="mr-2">📈</span>
+                            40% Engagement Increase
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-gradient-to-r from-sky-lighter/10 to-transparent p-8 rounded-2xl border-l-4 border-sky">
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                        <div class="mb-4 lg:mb-0">
+                            <h3 class="font-display text-2xl font-semibold text-primary mb-2">Global School Network</h3>
+                            <p class="text-sky font-semibold text-lg">Elementary Educator</p>
+                            <p class="text-muted">2012 – 2018</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-sky-lighter/30 text-sky px-4 py-2 rounded-full text-sm font-medium">Technology Integration</span>
+                            <span class="bg-sage-lighter/30 text-sage px-4 py-2 rounded-full text-sm font-medium">Arts Education</span>
+                            <span class="bg-sky-lighter/30 text-sky px-4 py-2 rounded-full text-sm font-medium">Cross-Cultural Learning</span>
+                        </div>
+                    </div>
+                    <p class="text-secondary mb-6 leading-relaxed text-lg">
+                        Integrated cutting-edge technology and arts into daily lessons, creating immersive learning experiences that improved creativity scores and knowledge retention across diverse student populations.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <span class="mr-2">🌟</span>
+                            Innovation Award 2017
+                        </div>
+                        <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                            <span class="mr-2">🎯</span>
+                            Improved Retention Rates
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section-padding bg-gradient-to-br from-gray-50/50 via-white to-gray-50/30 relative">
+        <!-- Unified background tint -->
+        <div class="absolute inset-0 bg-gradient-to-r from-sage-lighter/8 via-transparent to-sky-lighter/8"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">Core Competencies</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-6"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto">Essential skills and expertise that drive student success and educational excellence</p>
+            </div>
+            
+            <!-- Unified section background -->
+            <div class="bg-white/40 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-lg border border-gray-100/50">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <!-- Skills Column - Left Side -->
+                    <div class="space-y-6 lg:pr-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h4v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-primary text-lg">Classroom Management</span>
+                                </div>
+                                <span class="text-sage font-bold text-lg">95%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-green-400 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-primary text-lg">Curriculum Design</span>
+                                </div>
+                                <span class="text-sky font-bold text-lg">92%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-400 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="92%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-primary text-lg">Student Assessment</span>
+                                </div>
+                                <span class="text-sage font-bold text-lg">90%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-purple-400 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-primary text-lg">Educational Technology</span>
+                                </div>
+                                <span class="text-sky font-bold text-lg">88%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-orange-500 to-orange-400 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="88%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-primary text-lg">Communication & Empathy</span>
+                                </div>
+                                <span class="text-sage font-bold text-lg">98%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-pink-500 to-pink-400 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technology & Certifications Column - Right Side -->
+                    <div class="space-y-5 lg:pl-6">
+                        <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-gray-100/50 h-fit">
+                            <h4 class="font-display text-xl font-semibold text-primary mb-5">Technology Stack</h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="text-center p-3 bg-blue-50/60 rounded-lg border border-blue-100/60">
+                                    <div class="w-6 h-6 mx-auto mb-2 bg-blue-100/70 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="font-medium text-primary text-sm">Google Classroom</div>
+                                    <div class="text-xs text-muted">LMS Platform</div>
+                                </div>
+                                <div class="text-center p-3 bg-yellow-50/60 rounded-lg border border-yellow-100/60">
+                                    <div class="w-6 h-6 mx-auto mb-2 bg-yellow-100/70 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="font-medium text-primary text-sm">Canva</div>
+                                    <div class="text-xs text-muted">Design Tool</div>
+                                </div>
+                                <div class="text-center p-3 bg-red-50/60 rounded-lg border border-red-100/60">
+                                    <div class="w-6 h-6 mx-auto mb-2 bg-red-100/70 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="font-medium text-primary text-sm">Kahoot</div>
+                                    <div class="text-xs text-muted">Interactive Quizzes</div>
+                                </div>
+                                <div class="text-center p-3 bg-blue-50/60 rounded-lg border border-blue-100/60">
+                                    <div class="w-6 h-6 mx-auto mb-2 bg-blue-100/70 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="font-medium text-primary text-sm">Zoom</div>
+                                    <div class="text-xs text-muted">Virtual Learning</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md border border-gray-100/50 flex-1">
+                            <h4 class="font-display text-xl font-semibold text-primary mb-5">Certifications</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-3 p-3 bg-sage-lighter/10 rounded-lg border border-sage-lighter/20">
+                                    <div class="w-8 h-8 bg-sage-lighter/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-sage" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-primary text-sm">TESOL Certification</div>
+                                        <div class="text-xs text-muted">Cambridge University • 2022</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3 p-3 bg-sky-lighter/10 rounded-lg border border-sky-lighter/20">
+                                    <div class="w-8 h-8 bg-sky-lighter/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-sky" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-primary text-sm">Inclusive Education</div>
+                                        <div class="text-xs text-muted">UNESCO • 2021</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3 p-3 bg-sage-lighter/10 rounded-lg border border-sage-lighter/20">
+                                    <div class="w-8 h-8 bg-sage-lighter/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-sage" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-primary text-sm">Digital Pedagogy</div>
+                                        <div class="text-xs text-muted">EdTech Institute • 2023</div>
+                                    </div>
+                                </div>
+                                <!-- Additional padding to match Technology Stack height -->
+                                <div class="py-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">Student Achievements</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-6"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto">Celebrating creativity, innovation, and the remarkable accomplishments of my students</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-sage-lighter/20 to-sky-lighter/20 flex items-center justify-center">
+                        <div class="text-6xl">✍️</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-semibold text-primary mb-3">Creative Writing Exhibition</h3>
+                        <p class="text-secondary mb-4">Annual showcase featuring student stories, poetry, and creative expressions that inspire and captivate audiences.</p>
+                        <div class="flex items-center text-sage text-sm font-medium">
+                            <span class="mr-2">📅</span>
+                            Annual Event
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-sky-lighter/20 to-sage-lighter/20 flex items-center justify-center">
+                        <div class="text-6xl">🔬</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-semibold text-primary mb-3">STEM Innovation Fair</h3>
+                        <p class="text-secondary mb-4">Student-led science experiments and innovative projects that demonstrate critical thinking and problem-solving skills.</p>
+                        <div class="flex items-center text-sky text-sm font-medium">
+                            <span class="mr-2">🏆</span>
+                            Award-Winning Projects
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-sage-lighter/20 to-sky-lighter/20 flex items-center justify-center">
+                        <div class="text-6xl">🤝</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-semibold text-primary mb-3">Community Outreach</h3>
+                        <p class="text-secondary mb-4">Teaching students the importance of giving back through meaningful community service and volunteer programs.</p>
+                        <div class="flex items-center text-sage text-sm font-medium">
+                            <span class="mr-2">🌟</span>
+                            Community Impact
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding contact-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">What People Say</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-6"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto">Heartfelt testimonials from students, parents, and colleagues</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="testimonial-bg p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-start mb-6">
+                        <div class="text-4xl text-sage mr-4">"</div>
+                        <p class="text-lg text-secondary italic leading-relaxed">
+                            Ms. Mitchell made learning feel exciting every single day. Her creative approach and genuine care helped me discover my passion for writing and gave me confidence I never knew I had.
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-14 h-14 bg-sage-lighter/20 rounded-full flex items-center justify-center text-2xl mr-4">
+                            👩‍🎓
+                        </div>
+                        <div>
+                            <div class="font-semibold text-primary">Emma Rodriguez</div>
+                            <div class="text-muted text-sm">Grade 8 Student • Class of 2023</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-bg p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-start mb-6">
+                        <div class="text-4xl text-sky mr-4">"</div>
+                        <p class="text-lg text-secondary italic leading-relaxed">
+                            Sarah's patience, creativity, and dedication transformed how our daughter approaches learning. We've seen remarkable growth in both her academic performance and self-confidence.
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-14 h-14 bg-sky-lighter/20 rounded-full flex items-center justify-center text-2xl mr-4">
+                            👨‍👩‍👧
+                        </div>
+                        <div>
+                            <div class="font-semibold text-primary">The Johnson Family</div>
+                            <div class="text-muted text-sm">Parents • ABC Academy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl lg:text-5xl font-semibold text-primary mb-6">Let's Connect</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-sage to-sky mx-auto mb-6"></div>
+                <p class="text-xl text-secondary max-w-3xl mx-auto">Ready to discuss education, collaboration, or share teaching experiences? I'd love to hear from you.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="text-center p-6 bg-white rounded-2xl card-hover shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-sage-lighter/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📧</span>
+                    </div>
+                    <h3 class="font-semibold text-primary mb-3 text-lg">Email</h3>
+                    <p class="text-secondary text-sm break-words px-2">emma.rodriguez@email.com</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-2xl card-hover shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-sky-lighter/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📱</span>
+                    </div>
+                    <h3 class="font-semibold text-primary mb-3 text-lg">Phone</h3>
+                    <p class="text-secondary text-sm">(555) 123-4567</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-2xl card-hover shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-sage-lighter/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💼</span>
+                    </div>
+                    <h3 class="font-semibold text-primary mb-3 text-lg">LinkedIn</h3>
+                    <p class="text-secondary text-sm break-words px-2">linkedin.com/in/emmarodriguez</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-sage-lighter/5 to-sky-lighter/5 p-8 lg:p-12 rounded-2xl shadow-lg">
+                <h3 class="font-display text-3xl font-semibold text-primary mb-8 text-center">Send Me a Message</h3>
+                <form class="space-y-6" id="contact-form">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-primary mb-2">Your Name *</label>
+                            <input type="text" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition-all duration-300" placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-primary mb-2">Your Email *</label>
+                            <input type="email" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition-all duration-300" placeholder="Enter your email address">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-primary mb-2">Subject *</label>
+                        <input type="text" required class="w-full p-4 border border-gray-300 rounded-lg focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition-all duration-300" placeholder="What's this about?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-primary mb-2">Your Message *</label>
+                        <textarea required rows="6" class="w-full p-4 border border-gray-300 rounded-lg focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition-all duration-300 resize-none" placeholder="Share your thoughts, questions, or ideas..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-sage text-white px-12 py-4 rounded-lg font-semibold hover:bg-sage-dark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="font-cursive text-4xl font-semibold mb-4 text-white">Emma Rodriguez</div>
+            <p class="text-gray-200 mb-4 text-lg">Inspiring minds • Nurturing growth • Building futures</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-sage-light to-sky-light mx-auto mb-4"></div>
+            <div class="text-gray-300">
+                © 2024 Emma Rodriguez. All rights reserved. • Designed with ❤️ for education
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach((bar, index) => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            // Start width animation
+                            bar.style.width = width;
+                            // Add wipe animation class
+                            bar.classList.add('animate');
+                        }, 300 + (index * 200)); // Sequential timing with 200ms delay between each
+                    });
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Find and observe the Core Competencies section
+        const allSections = document.querySelectorAll('section');
+        let skillsSection = null;
+        
+        allSections.forEach(section => {
+            const heading = section.querySelector('h2');
+            if (heading && heading.textContent.includes('Core Competencies')) {
+                skillsSection = section;
+            }
+        });
+        
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+        // Form submission with better UX
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            // Show loading state
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            button.classList.add('opacity-75');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success state
+                button.textContent = 'Message Sent! ✓';
+                button.classList.remove('bg-sage', 'hover:bg-sage-dark');
+                button.classList.add('bg-green-500');
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.classList.remove('opacity-75', 'bg-green-500');
+                    button.classList.add('bg-sage', 'hover:bg-sage-dark');
+                }, 3000);
+            }, 1500);
+        });
+
+        // Enhanced scroll effects for navigation
+        let lastScrollY = window.scrollY;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+            
+            // Hide/show nav on scroll
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Add transition to nav
+        nav.style.transition = 'transform 0.3s ease-in-out, box-shadow 0.3s ease';
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ebd68675a149b1',t:'MTc2MDQ5NDgzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

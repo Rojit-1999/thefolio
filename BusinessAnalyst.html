@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Arya Timalsina - Business Analytics & Banking Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Arya Timalsina</div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="#experience" onclick="closeMobileMenu()">Experience</a></li>
+                <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+                <li><a href="#certifications" onclick="closeMobileMenu()">Certifications</a></li>
+                <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Business Analytics<br>Data Driven Insight<br>Process Optimization<br>Financial Operations</h1>
+                <p class="hero-subtitle">
+                    Arya Timalsina — M.S. in Business Analytics Management, ABC university (2025-2027)
+                </p>
+                <div class="cta-group">
+                    <a href="#projects" class="cta-primary" aria-label="View Arya's portfolio and projects">
+                        <i class="fas fa-eye"></i>
+                        View My Work
+                    </a>
+                    <a href="#" class="cta-secondary" aria-label="Download Arya's resume">
+                        <i class="fas fa-download"></i>
+                        Download Résumé
+                    </a>
+                </div>
+                <div class="trust-caption">Trusted in Banking & Analytics</div>
+                <div class="skill-badges">SQL • Excel • Power BI</div>
+            </div>
+            <div class="analytics-montage">
+                <div class="main-chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Process Efficiency</div>
+                        <div class="chart-value">30%</div>
+                    </div>
+                    <div class="mini-chart">
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                        <div class="chart-bar"></div>
+                    </div>
+                </div>
+                <div class="kpi-tiles">
+                    <div class="kpi-tile">
+                        <div class="kpi-number">5+</div>
+                        <div class="kpi-label">Years Banking</div>
+                    </div>
+                    <div class="kpi-tile">
+                        <div class="kpi-number">10+</div>
+                        <div class="kpi-label">Process Optimizations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Detail-oriented business analytics student with 5+ years in banking operations and financial data analysis
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image slide-left">
+                    <div class="about-avatar" style="margin-top: 2rem;">
+                        <img src="https://i.ibb.co/KcQK0R9f/b991dcf9-e1c0-4f3f-b9cd-3d309cc5b14e.jpg" alt="Arya Timalsina Profile Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 50%;" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    </div>
+                    <div class="tech-icons">
+                        <div class="tech-icon" title="SQL">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tech-icon" title="Excel">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="tech-icon" title="Power BI">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content slide-right">
+                    <h3>Professional Summary</h3>
+                    <p class="about-text">
+                        Experienced banking professional with a strong foundation in financial data analysis and operations management. Currently pursuing advanced studies in Business Analytics Management to enhance expertise in data-driven decision making and strategic business insights.
+                    </p>
+                    <p class="about-text">
+                        Combining practical banking experience with analytical skills to bridge the gap between complex data and actionable business strategies, driving operational efficiency and informed decision-making.
+                    </p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2025-2027</div>
+                            <div class="timeline-content">
+                                <strong>M.S. Business Analytics Management</strong><br>
+                                ABC university, Kansas City, USA
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2015-2019</div>
+                            <div class="timeline-content">
+                                <strong>Bachelor's Degree</strong><br>
+                                Far Western University, Nepal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">
+                    A proven track record of excellence in banking operations and data analytics
+                </p>
+            </div>
+            <div class="experience-cards">
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div style="width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                            <img src="https://i.ibb.co/S4cnfsv0/siddharthabank-removebg-preview.png" alt="Siddhartha Bank Limited" style="width: 90px; height: 90px; object-fit: contain;" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        </div>
+                        <div>
+                            <div class="experience-title">Siddhartha Bank Limited</div>
+                            <div class="experience-period">2019 - 2024</div>
+                        </div>
+                    </div>
+                    <p class="experience-description">
+                        Optimized data operations, automated financial reports, and enhanced fraud detection systems. Led process improvement initiatives that increased operational efficiency by 30%.
+                    </p>
+                    <div class="experience-icons">
+                        <i class="fas fa-chart-line" title="Data Analytics"></i>
+                        <i class="fas fa-shield-alt" title="Security"></i>
+                        <i class="fas fa-cogs" title="Automation"></i>
+                    </div>
+                </div>
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <a href="https://ibb.co/9kFScMP7"><img src="https://i.ibb.co/RkxdY58q/laxmi-removebg-preview.png" alt="laxmi-removebg-preview" border="0" style="width: 90px; height: 90px; object-fit: contain;" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"></a>
+                        <div>
+                            <div class="experience-title">Sunrise Bank Limited</div>
+                            <div class="experience-period">2017 - 2018 (Internship)</div>
+                        </div>
+                    </div>
+                    <p class="experience-description">
+                        Assisted in data entry, service analytics, and customer feedback research. Gained foundational experience in banking operations and data management systems.
+                    </p>
+                    <div class="experience-icons">
+                        <i class="fas fa-database" title="Data Management"></i>
+                        <i class="fas fa-users" title="Customer Service"></i>
+                        <i class="fas fa-search" title="Research"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="kpi-section">
+                <div class="kpi-grid">
+                    <div class="kpi-card fade-in">
+                        <div class="kpi-number">5+</div>
+                        <div class="kpi-label">Years of Banking Experience</div>
+                    </div>
+                    <div class="kpi-card fade-in">
+                        <div class="kpi-number">10+</div>
+                        <div class="kpi-label">Process Optimization Projects</div>
+                    </div>
+                    <div class="kpi-card fade-in">
+                        <div class="kpi-number">100%</div>
+                        <div class="kpi-label">Compliance Accuracy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Core Skills</h2>
+                <p class="section-subtitle">
+                    Technical expertise and analytical capabilities for data-driven solutions
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Business Analytics</span>
+                        <span class="skill-percentage">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">SQL & Database Management</span>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Financial Data Analysis</span>
+                        <span class="skill-percentage">92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Risk Assessment & Fraud Detection</span>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="88%"></div>
+                    </div>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Process Automation</span>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Microsoft Excel, Finacle, Oracle</span>
+                        <span class="skill-percentage">93%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="93%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">
+                    Professional credentials demonstrating expertise and commitment to excellence
+                </p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-item fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="cert-text">AML & CFT Compliance</div>
+                </div>
+                <div class="cert-item fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="cert-text">Fraud Detection & Signature Verification</div>
+                </div>
+                <div class="cert-item fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="cert-text">Corporate Personality Development</div>
+                </div>
+                <div class="cert-item fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="cert-text">Customer Service Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">
+                    Data-driven solutions and analytical insights for business optimization
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-visual">
+                        <div class="project-chart">
+                            <div class="chart-element" style="left: 10%; bottom: 20%; width: 8px; height: 40%;"></div>
+                            <div class="chart-element" style="left: 25%; bottom: 20%; width: 8px; height: 60%;"></div>
+                            <div class="chart-element" style="left: 40%; bottom: 20%; width: 8px; height: 35%;"></div>
+                            <div class="chart-element" style="left: 55%; bottom: 20%; width: 8px; height: 70%;"></div>
+                            <div class="chart-element" style="left: 70%; bottom: 20%; width: 8px; height: 50%;"></div>
+                            <div class="chart-element" style="left: 85%; bottom: 20%; width: 8px; height: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Segmentation Insights</h3>
+                        <p class="project-description">
+                            Advanced analytics dashboard providing comprehensive customer segmentation analysis, enabling targeted marketing strategies and improved customer retention rates.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-visual">
+                        <div class="project-chart">
+                            <!-- Security shield icon -->
+                            <div style="position: absolute; top: 20%; left: 20%; width: 30px; height: 35px; background: rgba(255,255,255,0.9); clip-path: polygon(50% 0%, 0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%); display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></div>
+                            </div>
+                            <!-- Alert indicators -->
+                            <div style="position: absolute; top: 35%; right: 25%; width: 12px; height: 12px; background: #ef4444; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <div style="position: absolute; top: 55%; right: 35%; width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; animation: pulse 2s infinite 0.5s;"></div>
+                            <!-- Monitoring lines -->
+                            <div style="position: absolute; bottom: 25%; left: 15%; width: 70%; height: 2px; background: rgba(255,255,255,0.7);"></div>
+                            <div style="position: absolute; bottom: 35%; left: 15%; width: 60%; height: 2px; background: rgba(255,255,255,0.5);"></div>
+                            <div style="position: absolute; bottom: 45%; left: 15%; width: 50%; height: 2px; background: rgba(255,255,255,0.3);"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Fraud Trend Dashboard</h3>
+                        <p class="project-description">
+                            Real-time fraud detection and monitoring system with predictive analytics capabilities, reducing fraudulent transactions and enhancing security measures.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-visual">
+                        <div class="project-chart">
+                            <div class="chart-element" style="top: 20%; left: 20%; width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.8);"></div>
+                            <div class="chart-element" style="top: 40%; left: 50%; width: 15px; height: 15px; border-radius: 50%; background: rgba(255,255,255,0.8);"></div>
+                            <div class="chart-element" style="top: 60%; left: 30%; width: 25px; height: 25px; border-radius: 50%; background: rgba(255,255,255,0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Risk Mitigation Forecasting</h3>
+                        <p class="project-description">
+                            Predictive modeling system for risk assessment and mitigation strategies, providing early warning indicators and actionable insights for decision makers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: white;">Let's Discuss Data-Driven Solutions</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">
+                    Ready to transform your business with analytics? Let's connect and explore opportunities.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info slide-left">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <strong>LinkedIn</strong><br>
+                            linkedin.com/in/aryatimalsina
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email</strong><br>
+                            arya.timalsina@email.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +1 (XXX) XXX-XXXX
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form slide-right" id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell me about your data challenges and goals..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">Arya Timalsina</div>
+                    <p class="footer-tagline">Data-Driven Solutions • Banking Excellence</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Arya Timalsina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

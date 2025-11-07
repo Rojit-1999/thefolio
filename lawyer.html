@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Mitchell - Attorney & Legal Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .font-heading {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .font-body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .navy-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        
+        .gold-accent {
+            color: #d4af37;
+        }
+        
+        .gold-bg {
+            background-color: #d4af37;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+        }
+        
+        .timeline-line {
+            position: relative;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #d4af37, #1e3a8a);
+        }
+        
+        .timeline-dot {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .gold-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        
+        .profile-placeholder {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="font-body bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 nav-glass border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold font-heading text-blue-900">Sarah Mitchell</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">About</a>
+                    <a href="#practice" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">Practice Areas</a>
+                    <a href="#experience" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">Experience</a>
+                    <a href="#results" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">Results</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-900 transition-colors font-medium">Contact</a>
+                </div>
+                <button id="mobile-menu" class="md:hidden text-blue-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-full flex items-center relative overflow-hidden pt-20">
+        <!-- Static gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="text-white reveal">
+                    <h1 class="text-5xl lg:text-7xl font-heading font-bold mb-6">
+                        Justice. <span class="gold-accent">Integrity.</span> Results.
+                    </h1>
+                    <h2 class="text-2xl lg:text-3xl mb-8 font-light">
+                        I'm Sarah Mitchell, an Attorney dedicated to practical, strategic, client-focused solutions.
+                    </h2>
+                    <p class="text-xl mb-10 leading-relaxed opacity-90">
+                        With proven experience in litigation, contract negotiation, and compliance, I guide individuals 
+                        and businesses through complex legal issues with clarity and commitment.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
+                        <button onclick="scrollToSection('contact')" class="gold-bg text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-500 transition-all shadow-lg">
+                            Book Consultation
+                        </button>
+                        <button onclick="scrollToSection('about')" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all">
+                            Learn More
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center space-x-6 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <span>Available for consultation</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 gold-bg rounded-full"></div>
+                            <span>Licensed in New York</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-blue-900 mb-6">About Me</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="w-full h-[480px] rounded-2xl overflow-hidden">
+                            <a href="https://imgbb.com/"><img src="https://i.ibb.co/q3gCVzgb/Chat-GPT-Image-Oct-13-2025-03-58-41-AM-removebg-preview.png" alt="Chat-GPT-Image-Oct-13-2025-03-58-41-AM-removebg-preview" border="0" class="w-full h-full object-contain" 
+                                 onerror="this.src=''; this.alt='Profile image failed to load'; this.style.display='none';" /></a>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 gold-bg text-blue-900 p-6 rounded-xl shadow-lg">
+                            <div class="font-heading text-lg font-bold">"The strength of law lies in fairness, not in power."</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="space-y-6">
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Sarah Mitchell is a licensed attorney recognized for professionalism and client advocacy. 
+                            Balancing litigation and mediation, she resolves disputes efficiently while protecting interests.
+                        </p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Outside court, Sarah provides strategic corporate and contract counsel, helping businesses 
+                            navigate complex legal landscapes with confidence and clarity.
+                        </p>
+                        <div class="grid grid-cols-2 gap-8 mt-12">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-900 mb-2">15+</div>
+                                <div class="text-gray-600">Years Experience</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-900 mb-2">500+</div>
+                                <div class="text-gray-600">Cases Handled</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-900 mb-2">95%</div>
+                                <div class="text-gray-600">Success Rate</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-900 mb-2">24/7</div>
+                                <div class="text-gray-600">Client Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section id="practice" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-blue-900 mb-6">Practice Areas</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+                    Comprehensive legal services tailored to meet your specific needs with expertise and dedication.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H20V19ZM18 11H16V13H18V11ZM18 15H16V17H18V15Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Corporate Law</h3>
+                        <p class="text-gray-600 mb-4">Business setup, contracts, compliance, and strategic corporate counsel for growing enterprises.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Business formation and structure</li>
+                            <li>• Contract drafting and review</li>
+                            <li>• Regulatory compliance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 4L12 5.5L9 4L3 7V9H21ZM3 10V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V10H3ZM5 12H8V19H5V12ZM10 12H14V19H10V12ZM16 12H19V19H16V12Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Civil Litigation</h3>
+                        <p class="text-gray-600 mb-4">Expert representation, settlement negotiation, and mediation services for civil disputes.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Dispute resolution</li>
+                            <li>• Settlement negotiation</li>
+                            <li>• Court representation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V18H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Criminal Defense</h3>
+                        <p class="text-gray-600 mb-4">Research-driven, ethical advocacy ensuring your rights are protected throughout the legal process.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Criminal case defense</li>
+                            <li>• Rights protection</li>
+                            <li>• Legal strategy development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Family & Property Law</h3>
+                        <p class="text-gray-600 mb-4">Confidential, compassionate support for family matters and property disputes.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Family law matters</li>
+                            <li>• Property disputes</li>
+                            <li>• Estate planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9,21C9,21.5 9.4,22 10,22H14C14.6,22 15,21.5 15,21V20H9V21ZM12,2C8.1,2 5,5.1 5,9C5,11.4 6.2,13.5 8,14.7V17C8,17.5 8.4,18 9,18H15C15.6,18 16,17.5 16,17V14.7C17.8,13.4 19,11.3 19,9C19,5.1 15.9,2 12,2ZM14.5,13L14,13.3V16H10V13.3L9.5,13C8.1,12.2 7.2,10.7 7.2,9C7.2,6.4 9.4,4.2 12,4.2C14.6,4.2 16.8,6.4 16.8,9C16.8,10.7 15.9,12.2 14.5,13Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Intellectual Property</h3>
+                        <p class="text-gray-600 mb-4">Trademark, copyright, and patent filings to protect your intellectual assets.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Trademark registration</li>
+                            <li>• Copyright protection</li>
+                            <li>• Patent applications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border-t-4 border-blue-900">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Contract Law</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive contract services from drafting to dispute resolution and enforcement.</p>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li>• Contract drafting</li>
+                            <li>• Agreement review</li>
+                            <li>• Dispute resolution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-blue-900 mb-6">Experience</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+            </div>
+            <div class="timeline-line max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    <div class="reveal flex items-start space-x-8">
+                        <div class="timeline-dot w-10 h-10 gold-bg rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-900 rounded-full"></div>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover flex-1">
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading font-bold text-blue-900">Senior Associate</h3>
+                                    <p class="text-xl gold-accent font-semibold">Mitchell & Associates Law Firm</p>
+                                </div>
+                                <span class="text-gray-500 text-lg">2020 – Present</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Leading complex civil and corporate disputes while maintaining the highest standards of client service and legal excellence.
+                            </p>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>• Represented clients in high-stakes civil and corporate disputes</li>
+                                <li>• Drafted complex commercial contracts and compliance policies</li>
+                                <li>• Achieved 95% success rate in case resolutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex items-start space-x-8">
+                        <div class="timeline-dot w-10 h-10 gold-bg rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-900 rounded-full"></div>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover flex-1">
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-heading font-bold text-blue-900">Legal Advisor</h3>
+                                    <p class="text-xl gold-accent font-semibold">Corporate Legal Solutions</p>
+                                </div>
+                                <span class="text-gray-500 text-lg">2017 – 2020</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Provided strategic legal guidance to small and medium enterprises on labor law, tax compliance, and business operations.
+                            </p>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>• Guided SMEs on labor and tax law compliance</li>
+                                <li>• Settled 90% of disputes through pre-trial negotiation</li>
+                                <li>• Developed comprehensive legal frameworks for growing businesses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="reveal flex items-start space-x-8">
+                        <div class="timeline-dot w-10 h-10 gold-bg rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-4 h-4 bg-blue-900 rounded-full"></div>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover flex-1">
+                            <div class="mb-4">
+                                <h3 class="text-2xl font-heading font-bold text-blue-900">Education</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-lg font-semibold text-gray-800">LL.M. in Corporate Law</p>
+                                    <p class="text-gray-600">Columbia Law School</p>
+                                </div>
+                                <div>
+                                    <p class="text-lg font-semibold text-gray-800">LL.B. (Honors)</p>
+                                    <p class="text-gray-600">New York University School of Law</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Results -->
+    <section id="results" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-blue-900 mb-6">Case Studies & Results</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+                    Real outcomes for real clients. Here are some examples of how strategic legal counsel makes a difference.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="reveal">
+                    <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H20V19ZM18 11H16V13H18V11ZM18 15H16V17H18V15Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Corporate Dispute Resolution</h3>
+                        <p class="text-gray-600 mb-4">
+                            Successfully mediated a complex partnership dispute, achieving an out-of-court settlement that saved the client 6 months of litigation and significant costs.
+                        </p>
+                        <div class="gold-accent font-semibold">Result: $2.3M saved in legal fees</div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Property Inheritance Case</h3>
+                        <p class="text-gray-600 mb-4">
+                            Negotiated a complex family property inheritance dispute, securing full client rights while maintaining family relationships through careful mediation.
+                        </p>
+                        <div class="gold-accent font-semibold">Result: 100% client satisfaction</div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                        <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-blue-900">Startup Legal Framework</h3>
+                        <p class="text-gray-600 mb-4">
+                            Guided a tech startup from formation through IPO compliance, establishing comprehensive legal frameworks that supported rapid growth and investor confidence.
+                        </p>
+                        <div class="gold-accent font-semibold">Result: Successful $50M IPO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 navy-gradient relative">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-white mb-6">Client Testimonials</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="reveal">
+                    <div class="testimonial-card p-8 rounded-2xl text-white">
+                        <div class="text-4xl gold-accent mb-4">"</div>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            Professional and precise — Sarah guided me through every step of my corporate restructuring with clarity and expertise.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center">
+                                <span class="text-blue-900 font-bold">JD</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">John Davis</div>
+                                <div class="text-white/80">CEO, TechCorp</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="testimonial-card p-8 rounded-2xl text-white">
+                        <div class="text-4xl gold-accent mb-4">"</div>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            Clear, compassionate, and results-oriented counsel. Sarah's approach made a difficult family situation manageable and fair.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center">
+                                <span class="text-blue-900 font-bold">MR</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Maria Rodriguez</div>
+                                <div class="text-white/80">Small Business Owner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="testimonial-card p-8 rounded-2xl text-white">
+                        <div class="text-4xl gold-accent mb-4">"</div>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            Outstanding corporate insight — Sarah is a true legal partner who understands business needs and delivers practical solutions.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center">
+                                <span class="text-blue-900 font-bold">RT</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Robert Thompson</div>
+                                <div class="text-white/80">Investment Firm Partner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-blue-900 mb-6">Let's Discuss Your Case</h2>
+                <div class="gold-divider w-24 mx-auto mb-2"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+                    Have a legal question or need advice? Let's discuss how I can help you navigate your legal challenges with confidence.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-heading font-bold text-blue-900">Email</h3>
+                                <p class="text-gray-600">sarah.mitchell@lawfirm.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-heading font-bold text-blue-900">Phone</h3>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-heading font-bold text-blue-900">Office</h3>
+                                <p class="text-gray-600">123 Legal Plaza, New York, NY 10001</p>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <h3 class="text-xl font-heading font-bold text-blue-900 mb-4">Connect With Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 navy-gradient rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors">
+                                    <span class="text-sm font-bold">LI</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 navy-gradient rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors">
+                                    <span class="text-sm font-bold">@</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 gold-bg rounded-full flex items-center justify-center text-blue-900 hover:bg-yellow-500 transition-colors">
+                                    <span class="text-sm font-bold">WA</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <form id="contact-form" class="bg-gray-50 p-8 rounded-2xl space-y-6">
+                        <div>
+                            <input type="text" id="name" placeholder="Your Name" required 
+                                   class="w-full px-4 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent">
+                        </div>
+                        <div>
+                            <input type="email" id="email" placeholder="Your Email" required 
+                                   class="w-full px-4 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent">
+                        </div>
+                        <div>
+                            <textarea id="message" rows="6" placeholder="Describe your legal matter..." required 
+                                      class="w-full px-4 py-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full navy-gradient text-white py-4 rounded-xl font-semibold hover:bg-blue-800 transition-colors">
+                            Send Message
+                        </button>
+                        <p class="text-sm text-gray-500 text-center">
+                            All communications are confidential and protected by attorney-client privilege.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <div class="text-2xl font-heading font-bold mb-4">Sarah Mitchell</div>
+                <p class="text-white/80 mb-8">Attorney & Legal Consultant</p>
+                <div class="flex justify-center space-x-8 mb-8 text-sm">
+                    <a href="#" class="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-white/80 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-white/80 hover:text-white transition-colors">Legal Disclaimer</a>
+                </div>
+                <div class="border-t border-white/20 pt-8">
+                    <p class="text-white/60">© 2025 Sarah Mitchell, Attorney at Law | All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth Scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Contact Form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            alert(`Thank you ${name}! Your message has been received. I will review your legal matter and respond within 24 hours to ${email}. All communications are confidential and protected by attorney-client privilege.`);
+            this.reset();
+        });
+
+        // Mobile Menu
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            alert('Mobile navigation menu would expand here with all sections accessible for mobile users.');
+        });
+
+        // Initialize
+        window.addEventListener('load', function() {
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ddd64676f3d197',t:'MTc2MDM0ODAyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

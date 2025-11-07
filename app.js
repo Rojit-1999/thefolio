@@ -414,25 +414,31 @@ async function handleFormSubmit(event) {
   let successShown = false;
 
   try {
-    // All validations passed - prepare form data
+    // All validations passed - get form element
+    const form = document.getElementById("contactForm");
+    if (!form) {
+      throw new Error("Form not found");
+    }
+
+    // Get form data for Google Sheets (we still need these values)
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const role = document.getElementById("role").value;
     const message = document.getElementById("message").value.trim();
 
-    // Prepare EmailJS parameters
-    const emailParams = {
-      from_name: name,
-      from_email: email,
-      role: role,
-      message: message,
-      resume: resumeFile ? resumeFile.name : "No resume attached",
-      to_name: "The Folio Studio",
-    };
-
     // Check if EmailJS is loaded
     if (typeof emailjs === "undefined") {
       throw new Error("EmailJS is not loaded. Please refresh the page and try again.");
+    }
+
+    // Add to_name to form as a hidden field if it doesn't exist
+    let toNameField = form.querySelector('input[name="to_name"]');
+    if (!toNameField) {
+      toNameField = document.createElement("input");
+      toNameField.type = "hidden";
+      toNameField.name = "to_name";
+      toNameField.value = "The Folio Studio";
+      form.appendChild(toNameField);
     }
 
     // Helper function to handle successful submission
@@ -458,7 +464,7 @@ async function handleFormSubmit(event) {
       console.error("EmailJS Error:", errorMessage);
       createModal(
         "error",
-        "Failed to send your message. Please try again or contact us directly at hello@foliostudio.com",
+        "Failed to send your message. Please try again or contact us directly at Foliostudio",
         typeof errorMessage === "string" ? errorMessage : errorMessage.text || "Unknown error"
       );
 
@@ -468,9 +474,10 @@ async function handleFormSubmit(event) {
       isSubmitting = false;
     };
 
-    // Send email using EmailJS
+    // Send email using EmailJS sendForm (this handles file attachments automatically)
+    // sendForm will automatically map all form fields with name attributes to EmailJS template variables
     emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
       .then(
         (response) => {
           console.log("Email sent successfully!", response.status, response.text);
