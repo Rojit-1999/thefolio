@@ -588,7 +588,7 @@ function showUploadError(message) {
 
 // Home testimonial slider
 let currentTestimonial = 0;
-const totalTestimonials = 6;
+const totalTestimonials = 5;
 function updateTestimonialSlider() {
   const slider = document.getElementById("testimonialSlider");
   const dots = document.querySelectorAll(".testimonial-dot");
