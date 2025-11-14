@@ -231,6 +231,11 @@ body {
   color: white;
 }
 
-/* footer.background{
-  background-image: url(./assets/Images/backgroundlogo.png);
-} */
+.background {
+  background-image: url("./assets/Images/backgroundlogo.png") ;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: overlay; 
+  opacity: 1; 
+}
