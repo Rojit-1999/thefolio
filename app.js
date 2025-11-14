@@ -217,7 +217,10 @@ async function saveToGoogleSheets(name, email, role, message, resumeFile) {
     formData.append("email", email);
     formData.append("role", role);
     formData.append("message", message);
-    formData.append("resumeFileName", resumeFile ? resumeFile.name : "No resume");
+    formData.append(
+      "resumeFileName",
+      resumeFile ? resumeFile.name : "No resume"
+    );
     formData.append("timestamp", new Date().toISOString());
 
     // Use fetch to submit to Google Apps Script
@@ -266,7 +269,11 @@ function createModal(type, message, errorDetails = null) {
         </div>
         <h3 class="text-2xl font-bold mb-4">Network Error</h3>
         <p class="text-gray-600 mb-6">${message}</p>
-        ${errorDetails ? `<p class="text-sm text-gray-500 mb-4">Error: ${errorDetails}</p>` : ""}
+        ${
+          errorDetails
+            ? `<p class="text-sm text-gray-500 mb-4">Error: ${errorDetails}</p>`
+            : ""
+        }
         <button class="btn-primary modal-close-btn">Close</button>
       </div>`;
   }
@@ -357,25 +364,31 @@ function validateResumeFile(file) {
 
   return { valid: true, message: "" };
 }
+function validateWebDesign(value) {
+  if (!value || value.trim() === "") {
+    return { valid: false, message: "Please select a website design type" };
+  }
+  return { valid: true, message: "" };
+}
 
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  // Prevent multiple simultaneous submissions
-  if (isSubmitting) {
-    return;
-  }
+  // Prevent multiple submissions
+  if (isSubmitting) return;
 
-  // Validate all fields FIRST
+  // Validate fields
   const nameValid = validateField("name", validateName);
   const emailValid = validateField("email", validateEmail);
+  const webDesignValid = validateField("web_design", validateWebDesign);
   const roleValid = validateField("role", validateRole);
   const messageValid = validateField("message", validateMessage);
 
-  // Validate resume file if present
+  // Resume file validation
   const resumeInput = document.getElementById("resume");
   const resumeFile = resumeInput ? resumeInput.files[0] : null;
   const resumeValidation = validateResumeFile(resumeFile);
+
   if (!resumeValidation.valid) {
     showUploadError(resumeValidation.message);
     const firstError = document.querySelector(".border-red-500");
@@ -386,9 +399,14 @@ async function handleFormSubmit(event) {
     return;
   }
 
-  // If any field is invalid, stop submission
-  if (!nameValid || !emailValid || !roleValid || !messageValid) {
-    // Scroll to first error
+  // Stop if any validation fails
+  if (
+    !nameValid ||
+    !emailValid ||
+    !webDesignValid ||
+    !roleValid ||
+    !messageValid
+  ) {
     const firstError = document.querySelector(".border-red-500");
     if (firstError) {
       firstError.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -397,41 +415,36 @@ async function handleFormSubmit(event) {
     return;
   }
 
-  // Find submit button with null check
+  // Submit button state
   const submitButton = event.target.querySelector('button[type="submit"]');
   if (!submitButton) {
     console.error("Submit button not found");
     return;
   }
 
-  // Mark as submitting
   isSubmitting = true;
   const originalButtonText = submitButton.textContent;
   submitButton.disabled = true;
   submitButton.textContent = "Submitting...";
 
-  // Track if success modal has been shown to prevent duplicates
   let successShown = false;
 
   try {
-    // All validations passed - get form element
     const form = document.getElementById("contactForm");
-    if (!form) {
-      throw new Error("Form not found");
-    }
+    if (!form) throw new Error("Form not found");
 
-    // Get form data for Google Sheets (we still need these values)
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
+    const web_design = document.getElementById("web_design").value;
     const role = document.getElementById("role").value;
     const message = document.getElementById("message").value.trim();
 
-    // Check if EmailJS is loaded
+    // Ensure emailjs exists
     if (typeof emailjs === "undefined") {
-      throw new Error("EmailJS is not loaded. Please refresh the page and try again.");
+      throw new Error("EmailJS is not loaded.");
     }
 
-    // Add to_name to form as a hidden field if it doesn't exist
+    // Create hidden field to_name if not present
     let toNameField = form.querySelector('input[name="to_name"]');
     if (!toNameField) {
       toNameField = document.createElement("input");
@@ -441,9 +454,8 @@ async function handleFormSubmit(event) {
       form.appendChild(toNameField);
     }
 
-    // Helper function to handle successful submission
     const handleSuccess = () => {
-      if (successShown) return; // Prevent duplicate modals
+      if (successShown) return;
       successShown = true;
 
       createModal(
@@ -453,64 +465,55 @@ async function handleFormSubmit(event) {
 
       resetForm();
 
-      // Restore button
       submitButton.disabled = false;
       submitButton.textContent = originalButtonText;
       isSubmitting = false;
     };
 
-    // Helper function to handle submission error
     const handleError = (errorMessage) => {
       console.error("EmailJS Error:", errorMessage);
+
       createModal(
         "error",
-        "Failed to send your message. Please try again or contact us directly at Foliostudio",
-        typeof errorMessage === "string" ? errorMessage : errorMessage.text || "Unknown error"
+        "Failed to send your message. Please try again or contact us directly.",
+        typeof errorMessage === "string"
+          ? errorMessage
+          : errorMessage.text || "Unknown error"
       );
 
-      // Restore button
       submitButton.disabled = false;
       submitButton.textContent = originalButtonText;
       isSubmitting = false;
     };
 
-    // Send email using EmailJS sendForm (this handles file attachments automatically)
-    // sendForm will automatically map all form fields with name attributes to EmailJS template variables
-    emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
-      .then(
-        (response) => {
-          console.log("Email sent successfully!", response.status, response.text);
-          
-          // Optionally also save to Google Sheets (non-blocking)
-          // This runs in the background and won't affect the user experience if it fails
-          saveToGoogleSheets(name, email, role, message, resumeFile).catch((err) => {
-            console.warn("Failed to save to Google Sheets (non-critical):", err);
-          });
-          
-          handleSuccess();
-        },
-        (error) => {
-          console.error("EmailJS Error Details:", error);
-          // Provide more specific error messages
-          let errorMsg = "Unknown error occurred";
-          if (error.text) {
-            errorMsg = error.text;
-          } else if (error.message) {
-            errorMsg = error.message;
+    // Send Email
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form).then(
+      (response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+
+        // Google Sheets save (non-blocking)
+        saveToGoogleSheets(name, email, role, message, resumeFile).catch(
+          (err) => {
+            console.warn("Sheets save failed:", err);
           }
-          handleError(errorMsg);
-        }
-      );
+        );
+
+        handleSuccess();
+      },
+      (error) => {
+        const msg = error.text || error.message || "Unknown error";
+        handleError(msg);
+      }
+    );
   } catch (err) {
-    console.error("Submission failed", err);
+    console.error("Submission failed:", err);
+
     createModal(
       "error",
       "Please check your internet connection and try again later.",
       err.message
     );
 
-    // Restore button
     submitButton.disabled = false;
     submitButton.textContent = originalButtonText;
     isSubmitting = false;
@@ -552,7 +555,7 @@ function handleResumeUpload(input) {
     if (fileNameEl) fileNameEl.textContent = `${fileName} (${fileSize} MB)`;
     if (previewEl) previewEl.classList.remove("hidden");
     if (labelEl) labelEl.textContent = "Resume uploaded successfully";
-    
+
     // Clear any previous upload errors
     const errorDiv = input.closest("div")?.querySelector(".mt-2.p-3.bg-red-50");
     if (errorDiv) {
@@ -702,7 +705,8 @@ function handlePricingTestimonialTouchStart(e) {
 function handlePricingTestimonialTouchEnd(e) {
   pricingTestimonialTouchEndX = e.changedTouches[0].screenX;
   const swipeThreshold = 50;
-  const swipeDistance = pricingTestimonialTouchStartX - pricingTestimonialTouchEndX;
+  const swipeDistance =
+    pricingTestimonialTouchStartX - pricingTestimonialTouchEndX;
   if (Math.abs(swipeDistance) > swipeThreshold) {
     if (swipeDistance > 0) nextPricingTestimonial();
     else previousPricingTestimonial();
